@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/Data-Services/services/admin.service';
 import { AllClass } from 'src/app/Classes/allClass';
 import { DetailsService } from 'src/app/Data-Services/services/details.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Children } from 'src/app/Classes/children';
 
 type UserEvents = Event[];
 
@@ -26,6 +27,9 @@ export class AdminComponent implements OnInit  {
   private responseDataSubjectFestival: BehaviorSubject<Festival | undefined> = new BehaviorSubject<Festival | undefined>(undefined);
   responseDataFestival$: Observable<Festival| undefined> = this.responseDataSubjectFestival.asObservable();
 
+  private responseDataSubjectChildren: BehaviorSubject<Children | undefined> = new BehaviorSubject<Children | undefined>(undefined);
+  responseDataChildren$: Observable<Children| undefined> = this.responseDataSubjectChildren.asObservable();
+
 
 
 
@@ -40,6 +44,7 @@ export class AdminComponent implements OnInit  {
   selectedEvent: string = ''; // Inizializza con l'evento predefinito (es. 'sports')
   detailsSport?:Sports;
   detailsFestival?:Festival;
+  detailsChildren?:Children;
  modify?:boolean
   private eventUrl = 'http://localhost:8083/api/events';
 
@@ -74,7 +79,8 @@ activateViewMode(mode: string, eventId: number) {
   this.viewMode = mode;
   console.log(eventId);
   this.getSingleEventSport(mode, eventId);
-  this.getSingleEventFestival(mode, eventId)
+  this.getSingleEventFestival(mode, eventId);
+  this.getSingleEventChildren(mode, eventId)
 
 
 }
@@ -118,6 +124,25 @@ activateViewMode(mode: string, eventId: number) {
   }
 
 
+  getSingleEventChildren(type: string, idEvent: number) {
+    this.adminServ.getSingleEventChildren(type='bambini' , idEvent).subscribe(
+      (response) => {
+        this.modify = true
+        this.detailsChildren = response;
+        console.log('Fetched Details:', this. detailsChildren);
+        this.respondIfSuccess(this.modify)
+        this. onResponseSuccessChildren(this. detailsChildren);
+
+
+        console.log('am i emitting a value?' +this.modify);
+      },
+      (error) => {
+        console.error('Error fetching details:', error);
+      }
+    );
+  }
+
+
 
   onResponseSuccessSport(response: Sports) {
     this.responseDataSubject.next(response);
@@ -125,6 +150,10 @@ activateViewMode(mode: string, eventId: number) {
 
   onResponseSuccessFestival(response: Festival) {
     this.responseDataSubjectFestival.next(response);
+  }
+
+  onResponseSuccessChildren(response: Children) {
+    this.responseDataSubjectChildren.next(response);
   }
 
   respondIfSuccess(response:boolean){

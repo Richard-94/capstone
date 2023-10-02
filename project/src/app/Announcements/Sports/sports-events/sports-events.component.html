@@ -113,6 +113,9 @@
                   Il tipo di evento è <strong>richiesto</strong>
                 </mat-error>
               </div>
+
+
+
             </div>
 
 
@@ -176,11 +179,27 @@
               </div>
             </div>
 
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="example-full">
+                    <mat-label>Scrivi una descrizione dell'evento</mat-label>
+                    <textarea formControlName="description" matInput></textarea>
+                  </mat-form-field>
+                  <mat-error *ngIf="myForm.get('description')?.hasError('required')">
+                    La descrizione è <strong>richiesta</strong>
+                  </mat-error>
+                </div>
+              </div>
+
+
+            </div>
+
 
             <div class="col mt-5">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col">
+                  <div class="col mb-5">
                     <div formArrayName="imageMetadataList">
                       <div class="form-group" *ngFor="let imageControl of getImages(); let i = index" [formGroupName]="i">
                         <mat-form-field class="example-full-width">
@@ -193,17 +212,18 @@
 
                   </div>
 
-                  <div class="col">
+
+                  <div class="col mb-5">
                     <div formArrayName="sponsorsList">
                       <div class="form-group" *ngFor="let sponsorControl of getSponsors(); let i = index" [formGroupName]="i">
                         <div class="d-flex justify-content-center">
-                          <div class="m-3">
+                          <div class=" me-3">
                             <mat-form-field class="example-full-width">
                               <mat-label for="sponsors">Name Sponsor {{ i + 1 }}</mat-label>
                               <input appSpacing type="text" matInput formControlName="nameSponsor" placeholder="Name Sponsor">
                             </mat-form-field>
                           </div>
-                          <div class="m-3">
+                          <div class="">
                             <mat-form-field class="example-full-width">
                               <mat-label for="sponsors">Websites {{ i + 1 }}</mat-label>
                               <input appSpacing type="text" matInput formControlName="websites" placeholder="Websites">
@@ -222,20 +242,20 @@
 
 
             </div>
+
           </div>
         </div>
         <div class="text-center fs-2">
-          <mat-dialog-actions align="center">
-            <button mat-button mat-dialog-close>Reset</button>
-            <button type="submit" mat-button cdkFocusInitial *ngIf="!modifyTrue">Crea Evento</button>
-            <button type="button" mat-button cdkFocusInitial *ngIf="modifyTrue" (click)="modifyEventSport(responseData?.eventType ?? '', responseData?.id ?? 0)">Modifica Evento</button>
+          <mat-dialog-actions align="center" class="button-group">
+            <button mat-button mat-dialog-close class="reset-button">Reset</button>
+            <button type="submit" mat-button cdkFocusInitial *ngIf="!modifyTrue" class="create-button">Crea Evento</button>
+            <button type="button" mat-button cdkFocusInitial *ngIf="modifyTrue" (click)="modifyEventSport(responseData?.eventType ?? '', responseData?.id ?? 0)" class="modify-button">Modifica Evento</button>
           </mat-dialog-actions>
         </div>
+
       </form>
     </div>
   </div>
 
 </div>
-
-
 

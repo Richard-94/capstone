@@ -5,6 +5,7 @@ import { Festival } from 'src/app/Classes/festivalEvent';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AllClass } from 'src/app/Classes/allClass';
+import { Children } from 'src/app/Classes/children';
 type UserEvents = Event[];
 export type EventDetails = Sports | Festival;
 
@@ -41,11 +42,17 @@ export class AdminService {
 
 
   getSingleEventFestival(eventType: string, id: number): Observable<Festival> {
-
-
     const url = `${this.eventUrl}/${eventType}/${id}`;
     console.log(url);
     return this.http.get<Festival>(url);
+      catchError(this.handleError)
+  }
+
+
+  getSingleEventChildren(eventType: string, id: number): Observable<Children> {
+    const url = `${this.eventUrl}/${eventType}/${id}`;
+    console.log(url);
+    return this.http.get<Children>(url);
       catchError(this.handleError)
   }
 

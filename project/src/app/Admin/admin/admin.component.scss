@@ -102,6 +102,49 @@ a{
     margin-top: 20px;
   }
 
+  /* SCSS */
+.container-fluid {
+  margin-top: 15px; /* Add some top margin for spacing */
+
+  .row {
+    .col {
+      display: flex;
+      justify-content: center; /* Center-align buttons horizontally */
+      align-items: center; /* Center-align buttons vertically */
+    }
+
+    button {
+      padding: 10px 20px; /* Add padding to buttons */
+      border: 1px solid #ccc; /* Add a border to buttons */
+      transition: background-color 0.2s, color 0.2s; /* Smooth transition */
+
+      &:hover {
+        background-color: #333; /* Background color on hover */
+        color: #fff; /* Text color on hover */
+      }
+    }
+
+    button[mat-raised-button] {
+      border-radius: 5px; /* Add rounded corners to buttons */
+    }
+
+    button.color-warn {
+      background-color: #ff6b6b; /* Set the warn color for the button */
+      border-color: #ff6b6b; /* Set border color for the button */
+
+      &:hover {
+        background-color: #ff4444; /* Background color on hover */
+        border-color: #ff4444; /* Border color on hover */
+      }
+    }
+  }
+}
+
+mat-raised-button{
+  color: green($color: #000000);
+}
+
+
 
 
 

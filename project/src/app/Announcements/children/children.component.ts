@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Children } from 'src/app/Classes/children';
 import { Province } from 'src/app/Classes/province';
 import { ProvinceService } from 'src/app/Data-Services/province.service';
@@ -11,6 +12,7 @@ import { ChildrenService } from 'src/app/Data-Services/services/children.service
   styleUrls: ['./children.component.scss']
 })
 export class ChildrenComponent {
+  @Input()  responseDataChildren$?: Observable<Children| undefined>;
   showForm?: boolean
   isSendPost: boolean = true;
   error?:Response;

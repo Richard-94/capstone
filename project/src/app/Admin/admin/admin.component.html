@@ -8,7 +8,7 @@
       <a class="nav-link" [class.active]="viewMode === 'Food_festival'" (click)="viewMode = 'Food_festival'">Street Food</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [class.active]="viewMode === 'children'" (click)="viewMode = 'children'">Festa Bambini</a>
+      <a class="nav-link" [class.active]="viewMode === 'Bambini'" (click)="viewMode = 'children'">Festa Bambini</a>
     </li>
   </ul>
 
@@ -19,8 +19,8 @@
     <div class="text-white" *ngSwitchCase="'Food_festival'">
       <app-food-events [responseDataFestival$]="responseDataFestival$"></app-food-events>
     </div>
-    <div class="text-white" *ngSwitchCase="'children'">
-      <app-children></app-children>
+    <div class="text-white" *ngSwitchCase="'Bambini'">
+      <app-children [responseDataChildren$] = "responseDataChildren$"></app-children>
     </div>
   </div>
 
@@ -40,7 +40,7 @@
                 <div class="tristi">
                   <p class="title-price fs-5"><strong>{{ events.title }}</strong></p>
                   <div class="d-flex justify-content-between">
-                    <!-- <p class="title-price"><strong>{{ events.type_of_sports }}</strong></p> -->
+
                   </div>
                   <div>
                     <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}}"
@@ -74,10 +74,13 @@
               <button type="button" (click)="events.id !== undefined ? deleteEvent(events.id) : null" mat-raised-button color="warn">Cancella Evento</button>
             </div>
             <div *ngIf="events.eventType === 'Sport'" class="col">
-              <button *ngIf="events.id !== undefined" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="warn">Modifica Sport</button>
+              <button *ngIf="events.id !== undefined" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Sport</button>
             </div>
             <div *ngIf="events.eventType === 'Food_festival'" class="col">
-              <button *ngIf="events.id" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="warn">Modifica Festa</button>
+              <button *ngIf="events.id" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Festa</button>
+            </div>
+            <div *ngIf="events.eventType === 'Bambini'" class="col">
+              <button *ngIf="events.id" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Bambini</button>
             </div>
           </div>
         </div>
