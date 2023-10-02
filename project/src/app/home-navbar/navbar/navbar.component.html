@@ -74,15 +74,15 @@
 
 
 
-    <nav class="mobile-nav"  [class.open]="isMobileNavOpen">
+    <nav class="mobile-nav text-center"  [class.open]="isMobileNavOpen">
 
       <div>
         <ng-container *ngIf="!authServ.login">
 
-          <div class="dialog d-flex">
+          <div class="dialog  justify-content-center mt-5">
             <button
               type="button"
-              class="p-3 fs-5 log-buttons first-button"
+              class="p-3 fs-5 log-buttons first-button mb-5"
               mat-raised-button
               color="primary"
               (click)="openDialog('3000ms', '1500ms', true)"
@@ -104,16 +104,18 @@
 
         <ng-container *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
 
-          <p class="admin fs-3 ">
+          <p class="admin fs-3">
             <a class="text-black" routerLink="/admin">Pagina Admin</a>
           </p>
         </ng-container>
 
         <ng-container *ngIf="authServ.login">
-
-          <p class="me-5">
-            <a class="nav-link" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill ms-3" [src]="image" width=40px alt="My Image"/> </a>
-          </p>
+          <div class="admin page text-center">
+            <p class="me-5">
+              <a class="nav-link admin fs-4 text-center" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill" [src]="image" height="50px" />
+              </a>
+            </p>
+          </div>
           <button
           type="button"
           class="p-3 fs-5 log-buttons first-button"

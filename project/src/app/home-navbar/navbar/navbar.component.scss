@@ -33,6 +33,8 @@ $color:green; //Giving a variable;
   display: flex; /* To ensure child elements align horizontally */
   align-items: center; /* Vertically align content */
   //margin-right: 60px; /* Reduced margin for better spacing */
+  margin-left: 50px;
+  justify-content: center;
 }
 
 .page {
