@@ -1,0 +1,108 @@
+<div *ngIf="!showForm" @todosAnimation>
+  <div class="pop">
+    <h2 mat-dialog-title>Welcome register your account</h2>
+    <mat-dialog-content @todoAnimation class="mat-typography">
+      <form [formGroup]="myForm"  (ngSubmit)="onCreatePost()" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+
+          <mat-error *ngIf="myForm && myForm.get('email')?.hasError('email') && !myForm.get('email')?.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username" placeholder="enter username">
+
+          <mat-error *ngIf="myForm.get('username')?.hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Surname</mat-label>
+          <input appTransform type="text" matInput formControlName="surname" placeholder="enter Surname">
+
+          <mat-error *ngIf="myForm.get('surname')?.hasError('required')">
+            Surname is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <!-- <input type="password" matInput formControlName="password" placeholder="password"> -->
+          <input formControlName="password" matInput [type]="showPassword ? 'text' : 'password'" name="password">
+          <mat-icon matSuffix (click)="togglePasswordVisibility()">
+            {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+
+          <mat-error *ngIf="myForm.get('password')?.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="myForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Telephone</mat-label>
+          <input appSpacing type="tel" matInput formControlName="telephone" placeholder="telephone">
+          <mat-error *ngIf="myForm.get('telephone')?.hasError('required')">
+           Telephone number is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="myForm.get('telephone')?.hasError('pattern')">
+            only numbers are allowed
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <input appSpacing type="text" matInput formControlName="address" placeholder="Address">
+          <mat-error *ngIf="myForm.get('address')?.hasError('required')">
+           Address is <strong>required</strong>
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Avatar</mat-label>
+          <input appSpacing type="text" matInput formControlName="avatar" placeholder="Insert an avatar if you wish">
+
+
+        </mat-form-field>
+
+
+        <mat-dialog-actions align="center">
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button type="submit" mat-button cdkFocusInitial>SignUp</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-dialog-content>
+    <div class="errormsg">
+      <mat-error *ngIf="error">{{ error }}</mat-error>
+      <mat-card *ngIf="success" class="success-card">
+        <mat-card-content>
+          <p class="success-message">{{ success }}</p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
+
+    <div *ngIf="!isSendPost">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+    </div>
+
+  </div>
+
+
+</div>
+

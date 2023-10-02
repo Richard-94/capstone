@@ -1,0 +1,64 @@
+<div *ngIf="!showForm" @todosAnimation>
+  <div class="pop">
+    <h2 mat-dialog-title>Welcome Login To your account</h2>
+    <mat-dialog-content @todoAnimation class="mat-typography">
+      <form [formGroup]="myForm" (ngSubmit)="onSend()" class="example-form">
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username" placeholder="enter username">
+
+          <mat-error *ngIf="myForm.get('username')?.hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <!-- <input type="password" matInput formControlName="password" placeholder="password"> -->
+          <input formControlName="password" matInput [type]="showPassword ? 'text' : 'password'" name="password">
+          <mat-icon matSuffix (click)="togglePasswordVisibility()">
+            {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+          <mat-error *ngIf="myForm.get('password')?.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="myForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+        <mat-dialog-actions align="center">
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button type="submit"mat-button cdkFocusInitial>SignIn</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-dialog-content>
+    <div class="errormsg">
+      <mat-error *ngIf="error">{{ error }}</mat-error>
+      <mat-card *ngIf="success" class="success-card">
+        <mat-card-content>
+          <p class="success-message">{{ success }}</p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <div *ngIf="!isSendPost">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+

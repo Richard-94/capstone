@@ -1,0 +1,123 @@
+ <div id="separate">
+  <mat-toolbar>
+    <div class="text-dark logo">
+      <a  mat-button routerLink="/"><img src="assets/logo_declinazione_uno.svg" width="90px" alt="My Image"/></a>
+
+    </div>
+
+
+    <div id="fill">
+      <div class="search-container alternative">
+
+          <input type="text" (keyup.enter)="typedText(searchInput)"
+          #searchInput
+          class="search-input text-black"
+          placeholder="Cerca">
+
+
+      </div>
+
+  </div>
+<div class="mobile justify-content-between">
+  <ng-container   *ngIf="!authServ.login">
+
+    <div class="dialog d-flex">
+      <button
+        type="button"
+        class="p-3 fs-5 log-buttons first-button"
+        mat-raised-button
+        color="primary"
+        (click)="openDialog('3000ms', '1500ms', true)"
+      >
+        Login
+      </button>
+      <div class="line ms-3 me-3"></div>
+      <button
+        type="button"
+        class="p-3 fs-5 log-buttons"
+        mat-raised-button
+        color="primary"
+        (click)="openDialog('2000ms', '1500ms', false)"
+      >
+        Signup
+      </button>
+    </div>
+  </ng-container>
+  <div class="d-flex justify-content-between">
+    <ng-container *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
+
+      <p>
+        <a routerLink="/admin">Pagina Admin</a>
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="authServ.login">
+
+      <p class="me-5">
+        <a class="nav-link" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill ms-3" [src]="image" width=40px alt="My Image"/> </a>
+      </p>
+      <button type="button" mat-raised-button (click)="authServ.logout()">Logout</button>
+    </ng-container>
+  </div>
+
+</div>
+
+
+
+    <nav class="mobile-nav"  [class.open]="isMobileNavOpen">
+
+      <div>
+        <ng-container *ngIf="!authServ.login">
+
+          <div class="dialog d-flex">
+            <button
+              type="button"
+              class="p-3 fs-5 log-buttons first-button"
+              mat-raised-button
+              color="primary"
+              (click)="openDialog('3000ms', '1500ms', true)"
+            >
+              Login
+            </button>
+            <div class="line ms-3 me-3"></div>
+            <button
+              type="button"
+              class="p-3 fs-5 log-buttons"
+              mat-raised-button
+              color="primary"
+              (click)="openDialog('2000ms', '1500ms', false)"
+            >
+              Signup
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
+
+          <p>
+            <a routerLink="/admin">Pagina Admin</a>
+          </p>
+        </ng-container>
+
+        <ng-container *ngIf="authServ.login">
+
+          <p class="me-5">
+            <a class="nav-link" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill ms-3" [src]="image" width=40px alt="My Image"/> </a>
+          </p>
+          <button type="button" mat-raised-button (click)="authServ.logout()">Logout</button>
+        </ng-container>
+      </div>
+    </nav>
+
+    <button class="navbar-toggler d-lg-none" type="button" (click)="toggleMobileNav()">
+
+      &#9776;
+    </button>
+
+
+  </mat-toolbar>
+</div>
+
+
+
+

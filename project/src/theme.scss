@@ -1,0 +1,26 @@
+@import '@angular/material/theming';
+
+// Include the Angular Material core styles
+@include mat-core();
+
+// Define your custom palettes and theme
+$app-primary: mat-palette($mat-green, 400);
+$app-accent: mat-palette($mat-yellow, 700);
+$app-warn: mat-palette($mat-red);
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include the Angular Material theme
+@include angular-material-theme($app-theme);
+
+.alternative{
+$app-primary: mat-palette($mat-amber, 800);
+$app-accent: mat-palette($mat-yellow, 700);
+$app-warn: mat-palette($mat-red);
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include the Angular Material theme
+@include angular-material-theme($app-theme);
+
+}

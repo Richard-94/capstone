@@ -1,0 +1,154 @@
+$color:green; //Giving a variable;
+
+// *******************MIXING*************************************
+@mixin soft-border{
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.box{
+  @include soft-border();
+}
+
+.modern-box{
+  @include soft-border();
+}
+
+
+// *******************MIXING WITH PARAMETERS*************************************
+@mixin soft-border1($border-radius){
+  border: 1px solid #fff;
+  border-radius: $border-radius;
+}
+
+.box1{
+  @include soft-border1(5px);
+}
+
+.modern-box1{
+  @include soft-border1(10px);
+}
+
+.mat-toolbar {
+  position: fixed;
+
+  justify-content: space-between;
+  background-color: #fff;
+  opacity: .8;
+  z-index: 2;
+  top: 0;
+  left: 0;
+
+}
+
+
+/* CSS to style the mobile navigation menu */
+.mobile-nav {
+  position: fixed;
+  top: 15%;
+  left: -100%; /* Hide it off-screen initially */
+  width: 80%; /* Adjust the width as needed */
+  height: 100%;
+  background-color: #fff;
+  transition: left 0.3s ease-in-out;
+  z-index: 3;
+  overflow-y: hidden; /* Enable scrolling if necessary */
+}
+
+.mobile-nav.open {
+  left: 0; /* Show the menu by moving it to the left */
+}
+
+.search-input {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 300px;
+  border-radius: 50px;
+
+  background-color: #86B033;
+
+}
+.dialog {
+  .line {
+    color: #c6dd8c;
+    border-right: 3px solid ;
+
+  }
+
+  &:hover {
+    color: greenyellow;
+  }
+
+
+  .log-buttons {
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; // Add a transition for background-color and text color
+  }
+
+  .log-buttons:hover {
+    background-color: green; // Change the background-color on hover
+    color: white; // Change the text color on hover
+  }
+
+  /* CSS per mostrare i contenuti su schermi grandi (lg) */
+
+
+}
+
+
+@media (min-width: 200px) and (max-width: 999px) {
+  .mobile {
+    display: none;
+  }
+  .search-input {
+  text-align: center;
+
+   }
+
+
+   @media (min-width: 200px) and (max-width: 600px) {
+
+    .search-input {
+    text-align: center;
+    width: 150px;
+     }
+  }
+
+  }
+
+
+
+  @media (min-width: 200px) and (max-width: 600px) {
+
+    .search-input {
+    text-align: center;
+    width: 100px;
+    border-radius: 10px;
+    padding: 2px;
+     }
+
+     .logo img{
+      width: 35px;
+     }
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

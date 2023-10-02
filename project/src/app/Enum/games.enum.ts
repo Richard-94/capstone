@@ -1,0 +1,6 @@
+export enum Games {
+  SCIVOLI,
+	ALTALENE,
+	GONFIABILI,
+	GIOCHI_DA_TAVOLO
+}

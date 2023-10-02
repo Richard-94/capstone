@@ -1,0 +1,58 @@
+
+
+<div id="admin" *ngIf="!noEvents" class="full-sport event-definition text-black">
+  <div id="sport" class="mb-5 sport-event text-black">
+    <div *ngFor="let events of dataEvents; let i = index" id="likes" class="container-fluid">
+
+      <div class="container-fluid ">
+        <div class="row">
+
+          <div class="scaleCard m-0 p-0">
+            <div class="bg-white p-4 rounded card">
+              <div id="right" class="text-white">
+                <div *ngIf="events.imageMetadataList">
+                  <img class="rounded img-fluid mb-3 image" [src]="events.imageMetadataList[0]?.filePath" alt="Random slide" />
+                </div>
+              </div>
+              <div class="tristi">
+                <p class="title-price fs-5"><strong>{{ events.title }}</strong></p>
+                <div  class="d-flex justify-content-between">
+
+                </div>
+                <div>
+                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+                    target="_blank">{{(events.town)}}
+                      <i class="bi bi-pin-map-fill "> </i></a></p>
+                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                </div>
+              </div>
+              <div class=" pt-3 pb-1 text-white">
+                <div class="d-flex justify-content-between">
+                  <div class="title-price">
+                    <i  class=" bi-currency-euro fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price | currency:'EUR':true }}</strong>  </i>
+                  </div>
+                  <div>
+
+                    <div *ngIf="events.eventType==='Sport'">
+                      <a class="nav-link" [routerLink]="['/navbar', 'sports', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                    </div>
+                    <div *ngIf="events.eventType==='Food_festival'">
+                      <a class="nav-link" [routerLink]="['/navbar', 'food', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template class="text-black fs-1 mt-5" *ngIf="noEvents">
+    <!-- Contenuto da visualizzare quando la condizione è falsa -->
+   {{displayMessage}}
+  </ng-template>
+</div>
+

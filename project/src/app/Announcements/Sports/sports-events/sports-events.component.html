@@ -1,0 +1,271 @@
+<div>
+  <div>
+    <h2 class="text-center fs-2 m-3">Sports</h2>
+    <mat-dialog-content  class="mat-typography">
+      <form [formGroup]="myForm" (ngSubmit)="onCreatePost()" class="w-75" >
+        <div class="container text-center">
+          <div class="row align-items-start">
+            <div class="col">
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Title</mat-label>
+                  <input type="text" matInput formControlName="title" placeholder="enter title">
+
+                  <mat-error *ngIf="myForm.get('title')?.hasError('required')">
+                    Title is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Location</mat-label>
+                  <input appTransform type="text" matInput formControlName="location" placeholder="enter Location">
+
+                  <mat-error *ngIf="myForm.get('location')?.hasError('required')">
+                    Location is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="ngx-timepicker-field-example">
+                  <input formControlName="time" matInput placeholder="Select Time" [ngxTimepicker]="appendedToInput" readonly>
+                  <ngx-material-timepicker #appendedToInput [appendToInput]="true"></ngx-material-timepicker>
+                  <mat-error *ngIf="myForm.get('time')?.hasError('required')">
+                   Time is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli una data</mat-label>
+                  <input formControlName="date" matInput [matDatepicker]="picker">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker></mat-datepicker>
+                  <mat-error *ngIf="myForm.get('date')?.hasError('required')">
+                    Date is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Partecipanti</mat-label>
+                  <input appSpacing type="tel" matInput formControlName="participants" placeholder="partecipanti">
+                  <mat-error *ngIf="myForm.get('participants')?.hasError('required')">
+                   Participants number is <strong>required</strong>
+                  </mat-error>
+
+                </mat-form-field>
+              </div>
+
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Address</mat-label>
+                  <input appSpacing type="text" matInput formControlName="address" placeholder="Address">
+                  <mat-error *ngIf="myForm.get('address')?.hasError('required')">
+                   Address is <strong>required</strong>
+                  </mat-error>
+
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli Regione</mat-label>
+                  <mat-select formControlName="region" [(ngModel)]="selectedRegion" name="region">
+                    <mat-option *ngFor="let item of regions" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('region')?.hasError('required')">
+                  La regione è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
+            </div>
+            <div class="col">
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli Provincia</mat-label>
+                  <mat-select formControlName="province" [(ngModel)]="selectedProvince" name="province">
+                    <mat-option *ngFor="let item of provinces" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('province')?.hasError('required')">
+                  La provincia è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli Comune</mat-label>
+                  <mat-select formControlName="town" [(ngModel)]="selectedComune" name="comune">
+                    <mat-option *ngFor="let item of comune" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('town')?.hasError('required')">
+                  Il comune è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scrivi una descrizione dell'evento</mat-label>
+                  <textarea formControlName="description" matInput></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('description')?.hasError('required')">
+                  La descrizione è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Organizzatore</mat-label>
+                  <input appSpacing type="text" matInput formControlName="organizer" placeholder="Organizzatore">
+                  <mat-error *ngIf="myForm.get('organizer')?.hasError('required')">
+                   L'organizzatore è <strong>richiesta</strong>
+                  </mat-error>
+
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Informazione dell'evento</mat-label>
+                  <input appSpacing type="text" matInput formControlName="info_event" placeholder="Informazioni">
+                  <mat-error *ngIf="myForm.get('info_event')?.hasError('required')">
+                   Informazione è <strong>richiesta</strong>
+                  </mat-error>
+
+                </mat-form-field>
+              </div>
+
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli il tipo di evento</mat-label>
+                  <mat-select formControlName="eventType" [(ngModel)]="selectedType" name="eventType">
+                    <mat-option *ngFor="let type of eventType" [value]="type">
+                      {{ type}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('eventType')?.hasError('required')">
+                  Il tipo di evento è <strong>richiesto</strong>
+                </mat-error>
+              </div>
+
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli tipo di sport</mat-label>
+                  <mat-select formControlName="type_of_sports" [(ngModel)]="selectedSport" name="type_of_sports">
+                    <mat-option *ngFor="let sports of  type_of_sports" [value]="sports">
+                      {{sports}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('eventType')?.hasError('required')">
+                  Il tipo di evento è <strong>richiesto</strong>
+                </mat-error>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Il prezzo dell'evento oppure gratis</mat-label>
+                  <input appSpacing type="text" matInput formControlName="price" placeholder="Prezzo">
+                  <mat-error *ngIf="myForm.get('price')?.hasError('required')">
+                   Il prezzo è <strong>richiesto</strong>
+                  </mat-error>
+
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>L'evento è adatto ai Disabili</mat-label>
+                  <mat-select formControlName="disabilities" [(ngModel)]="selectedDisabilities" name="disabilities">
+                    <mat-option *ngFor="let item of disabilities" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('disabilities')?.hasError('required')">
+                  Il tipo di evento è <strong>richiesto</strong>
+                </mat-error>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div formArrayName="imageMetadataList">
+                <div class="form-group" *ngFor="let imageControl of getImages(); let i = index" [formGroupName]="i">
+                  <mat-form-field class="example-full-width">
+                    <mat-label for="images">Image {{ i + 1 }}</mat-label>
+                    <input appSpacing type="text" matInput formControlName="filePath">
+                  </mat-form-field>
+                </div>
+              </div>
+              <button type="button" class="btn btn-success" (click)="addImages()">Aggiungi Immagini</button>
+
+
+              <div formArrayName="sponsorsList">
+                <div class="form-group" *ngFor="let sponsorControl of getSponsors(); let i = index" [formGroupName]="i">
+                  <div class="d-flex justify-content-center">
+                    <div class="m-3">
+                      <mat-form-field class="example-full-width">
+                        <mat-label for="sponsors">Name Sponsor {{ i + 1 }}</mat-label>
+                        <input appSpacing type="text" matInput formControlName="nameSponsor" placeholder="Name Sponsor">
+                      </mat-form-field>
+                    </div>
+                    <div class="m-3">
+                      <mat-form-field class="example-full-width">
+                        <mat-label for="sponsors">Websites {{ i + 1 }}</mat-label>
+                        <input appSpacing type="text" matInput formControlName="websites" placeholder="Websites">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-success" (click)="addSponsorsList()">Aggiungi Sponsor</button>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="text-center fs-2">
+        <mat-dialog-actions align="center">
+            <button mat-button mat-dialog-close>Reset</button>
+
+      <button type="submit" mat-button cdkFocusInitial *ngIf="!modifyTrue">
+              Crea Evento
+            </button>
+
+
+            <button type="button" mat-button cdkFocusInitial *ngIf="modifyTrue" (click)="modifyEventSport(responseData?.eventType ?? '', responseData?.id ?? 0)">
+              Modifica Evento
+            </button>
+
+
+          </mat-dialog-actions>
+
+        </div>
+      </form>
+
+    </mat-dialog-content>
+
+  </div>
+
+</div>
+
+
+

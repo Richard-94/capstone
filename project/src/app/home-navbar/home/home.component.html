@@ -1,0 +1,214 @@
+
+<ngb-carousel class="sliding-images" *ngIf="images">
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[0]" alt="Random first slide" />
+		</div>
+		<div class="carousel-caption">
+
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[1]" alt="Random second slide" />
+		</div>
+		<div class="carousel-caption">
+
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[2]" alt="Random third slide" />
+		</div>
+		<div class="carousel-caption">
+
+		</div>
+	</ng-template>
+
+
+
+</ngb-carousel>
+
+<div class="description">
+  <h1 class="text-center text-white"><strong>LOREM IPSUM</strong></h1>
+  <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias praesentium nostrum facere optio maiores sequi,
+    fuga rem debitis quisquam? Perferendis recusandae repudiandae cupiditate autem temporibus, culpa est sint! Impedit, quia.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem, alias natus aspernatur laudantium ducimus,
+    accusantium nulla accusamus inventore atque commodi repellat corrupti est quidem. Eum officiis in nemo maiores tempora.
+  </p>
+</div>
+
+
+<div class="container-fluid mt-4 mb-4 show">
+  <div class="row align-items-center">
+    <div class="col-lg-4 col-xl-3 events col-ms-5">
+      <p><strong>go italian events</strong></p>
+    </div>
+    <div class="col-lg-7 col-xl-7 col-ms-4 col-xl-5">
+      <p class="events-text fs-4">
+        {{ showFullText ? pipeText : (pipeText | summary: 400) }}
+      </p>
+      <button mat-fab extended (click)="showFullText = !showFullText">
+        {{ showFullText ? 'Mostra meno...' : 'Mostra di piu...' }}
+      </button>
+    </div>
+
+  </div>
+
+
+
+</div>
+<div class="full-sport mt-5 event-definition">
+  <h2  id="altro" class="ms-3 mb-5 pt-5 fs-1">{{ sportEvents[0]?.eventType }}</h2>
+  <div class="mb-5 sport-event sport">
+    <div *ngFor="let events of sportEvents; let i = index" id="likes" class="container-fluid">
+
+      <div class="container-fluid ">
+        <div class="row">
+
+         <div class="scaleCard m-0 p-0">
+            <div class="bg-white p-4 rounded card">
+              <div id="right" class="text-white">
+                <div *ngIf="events.imageMetadataList">
+                  <img class="rounded img-fluid mb-3 image" [src]="events.imageMetadataList[0]?.filePath" alt="Random slide" />
+                </div>
+              </div>
+              <div class="tristi">
+                <p class="title-price fs-5"><strong>{{ events.title }}</strong></p>
+                <div  class="d-flex justify-content-between">
+                  <p class="title-price"><strong>{{ events.type_of_sports }}</strong></p>
+                </div>
+                <div>
+                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+                    target="_blank">{{(events.town)}}
+                      <i class="bi bi-pin-map-fill "> </i></a></p>
+                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                </div>
+              </div>
+              <div class=" pt-3 pb-1 text-white">
+                <div class="d-flex justify-content-between">
+                  <div class="title-price">
+                    <i  class=" bi-currency-euro fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price }}</strong>  </i>
+                  </div>
+                  <div>
+
+
+                    <a class="nav-link" [routerLink]="['/navbar', 'sports', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+<!-- <div class="full-festival event-definition">
+  <h2 id="altro" class="ms-3 mb-5 pt-5  fs-1">{{ festivalEvent[0]?.eventType }}</h2>
+  <div class="sport">
+    <div  class="sport-background"   *ngFor="let events of festivalEvent; let i = index" id="likes" class="container-fluid">
+
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="scaleCard m-0 p-0">
+              <div class=" p-4 rounded pb-5 card">
+                <div id="right" class="text-white">
+                  <div *ngIf="events.imageMetadataList">
+                    <img class="rounded img-fluid mb-3 image" [src]="events.imageMetadataList[0]?.filePath" alt="Random slide" />
+                  </div>
+                </div>
+                <div class="tristi "class="d-flex justify-content-between text-align-center">
+                  <div>
+                    <p class="title-price hot pvscode-file://vscode-app/d:/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.htmllaylist fs-4">{{ events.title }}</p>
+                  </div>
+
+
+                    <div (click)="favourites(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArray[i] }" class="fs-3">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+
+                </div>
+
+                <div>
+                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+                    target="_blank">{{(events.town)}}
+                      <i class="bi bi-pin-map-fill "> </i></a></p>
+
+                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <div class="title-price">
+                    <i  class="bi bi-tags-fill fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price | currency:'EUR':true }}</strong>  </i>
+                  </div>
+                    <a class="nav-link" [routerLink]="['/navbar', 'food', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="full-children event-definition">
+  <h2 id="altro" class="ms-3 mb-5 pt-5  fs-1">{{ children[0]?.eventType }}</h2>
+  <div class="sport">
+    <div  class="sport-background"   *ngFor="let events of children; let i = index" id="likes" class="container-fluid">
+
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="scaleCard m-0 p-0">
+              <div class=" p-4 rounded pb-5 card">
+                <div id="right" class="text-white">
+                  <div *ngIf="events.imageMetadataList">
+                    <img class="rounded img-fluid mb-3 image" [src]="events.imageMetadataList[0]?.filePath" alt="Random slide" />
+                  </div>
+                </div>
+                <div class="tristi "class="d-flex justify-content-between text-align-center">
+                  <div>
+                    <p class="title-price hot pvscode-file://vscode-app/d:/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.htmllaylist fs-4">{{ events.title }}</p>
+                  </div>
+
+
+                    <div (click)="favourites(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArray[i] }" class="fs-3">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+
+                </div>
+
+                <div>
+                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+                    target="_blank">{{(events.town)}}
+                      <i class="bi bi-pin-map-fill "> </i></a></p>
+
+                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <div class="title-price">
+                    <i  class="bi bi-tags-fill fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price | currency:'EUR':true }}</strong>  </i>
+                  </div>
+                    <a class="nav-link" [routerLink]="['/navbar', 'children', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ -->
+
+
+
+
+
+
