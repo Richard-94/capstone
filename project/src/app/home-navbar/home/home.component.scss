@@ -152,6 +152,8 @@
     .title-price{
      font-style: bold;
      font-weight: 400;
+     margin-right: 10px;
+     font-size: 25px;
 
     }
    }
@@ -348,6 +350,19 @@ display: none;
 
 }
 
+/* Style the link */
+a.nav-link {
+  /* Add your base styles here, such as color and font size */
+  @include title-price-color($festival-text-color);
+  font-size: 1rem;
+  text-decoration: none; /* Remove the default underline */
+  transition: color 0.3s, text-decoration 0.5s; /* Add smooth transitions for color and text-decoration */
+}
+
+a.nav-link:hover {
+  color: #fff; /* Text color (white) on hover */
+  text-decoration: underline; /* Underline the text on hover */
+}
 
 
 

@@ -75,26 +75,29 @@
               </div>
               <div class="tristi">
                 <p class="title-price fs-5"><strong>{{ events.title }}</strong></p>
+
                 <div  class="d-flex justify-content-between">
                   <p class="title-price"><strong>{{ events.type_of_sports }}</strong></p>
+                  <div (click)="favouritesSport(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init':isActiveArraySport[i] }" class="fs-3">
+                    <i class="bi bi-heart-fill"></i>
+                  </div>
                 </div>
-                <div>
-                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+
+
+                <div class="">
+                  <p class="fs-5"><i class="bi bi-geo-alt-fill title-price"> </i><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
                     target="_blank">{{(events.town)}}
-                      <i class="bi bi-pin-map-fill "> </i></a></p>
-                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                      </a></p>
+                  <p class="fs-5"> <i class="bi bi-calendar-date-fill title-price"> </i>  {{events.date | date}}</p>
+                  <p class="fs-5"> <i class="bi bi-clock icons title-price"></i>  {{events.time}}</p>
                 </div>
               </div>
               <div class=" pt-3 pb-1 text-white">
                 <div class="d-flex justify-content-between">
-                  <div class="title-price">
-                    <i  class=" bi-currency-euro fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price }}</strong>  </i>
+                  <div class="text-black">
+                    <i  class=" bi-currency-euro  title-price"> </i> <strong class="fs-3">{{ events.price === 'GRATIS' ? 'GRATIS' : events.price }}</strong>
                   </div>
-                  <div>
-
-
-                    <a class="nav-link" [routerLink]="['/navbar', 'sports', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
-                  </div>
+                    <a class="nav-link title-price" [routerLink]="['/navbar', 'sports', events.id]" routerLinkActive="active">Scopri di piu</a>
                 </div>
               </div>
             </div>
@@ -125,28 +128,29 @@
                 </div>
                 <div class="tristi "class="d-flex justify-content-between text-align-center">
                   <div>
-                    <p class="title-price hot pvscode-file://vscode-app/d:/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.htmllaylist fs-4">{{ events.title }}</p>
+                    <p class="title-price hot  fs-4">{{ events.title }}</p>
                   </div>
 
 
-                    <div (click)="favourites(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArray[i] }" class="fs-3">
-                        <i class="bi bi-heart-fill"></i>
-                    </div>
+                  <div (click)="favourites(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArray[i] }" class="fs-3">
+                    <i class="bi bi-heart-fill"></i>
+                  </div>
 
                 </div>
 
-                <div>
-                  <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
+                <div class="">
+                  <p class="fs-5"> <i class="bi bi-geo-alt-fill title-price"> </i> <a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}} "
                     target="_blank">{{(events.town)}}
-                      <i class="bi bi-pin-map-fill "> </i></a></p>
+                      </a></p>
 
-                  <p> <i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i> </p>
+                  <p class="text-black fs-5"> <i class="bi icons bi-calendar-date-fill title-price"></i>  {{events.date | date}}</p>
+                  <p class="fs-5"> <i class="bi bi-clock icons title-price"></i> {{events.time}} </p>
                 </div>
-                <div class="d-flex justify-content-between mt-4">
-                  <div class="title-price">
-                    <i  class="bi bi-tags-fill fs-5 m-1"> <strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price | currency:'EUR':true }}</strong>  </i>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <i  class=" bi-currency-euro  title-price"> </i> <strong class="fs-3">{{ events.price === 'GRATIS' ? 'GRATIS' : events.price }}</strong>
                   </div>
-                    <a class="nav-link" [routerLink]="['/navbar', 'food', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                    <a class="nav-link title-price" [routerLink]="['/navbar', 'food', events.id]" routerLinkActive="active">Scopri di piu</a>
                 </div>
               </div>
           </div>

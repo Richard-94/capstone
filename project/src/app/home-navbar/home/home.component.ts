@@ -63,6 +63,7 @@ private refreshTriggered: boolean = false;
   data?:UserEvent;
   isActive?:boolean = false;
   isActiveArray: boolean[] = [];
+  isActiveArraySport: boolean[] = [];
 
 
 
@@ -79,25 +80,27 @@ private refreshTriggered: boolean = false;
     private cdRef: ChangeDetectorRef,
   ) {}
   ngOnInit(): void {
-    const storedBackground = localStorage.getItem('background');
-    if (storedBackground) {
-      this.background = JSON.parse(storedBackground);
-    }
+   // Retrieve the background and selected colors from localStorage
+   const storedBackground = localStorage.getItem('background');
+   if (storedBackground) {
+     this.background = JSON.parse(storedBackground);
+   }
 
-    this.dialogService.responseDataUser$.subscribe((response)=>{
-      console.log(response);
-      if(response){
-        this.username = response.username
-        if(this.username){
-          this.homeService.getEventsFavouriteEvents(this.username).subscribe((response) => {
-            console.log(response);
-            this.dialogService.updateResponseDataUserEvent(response)
-            this.isActiveArray = response.map((userEvent) => userEvent.favourite === true);
-          });
-        }
-      }
-      this.cdRef.detectChanges();
-    });
+   this.dialogService.responseDataUser$.subscribe((response)=>{
+     console.log(response);
+     if(response){
+       this.username = response.username
+       if(this.username){
+         this.homeService.getEventsFavouriteEvents(this.username).subscribe((response) => {
+           console.log(response);
+           this.dialogService.updateResponseDataUserEvent(response)
+           this.isActiveArray = response.map((userEvent) => userEvent.favourite === true);
+        //this.isActiveArraySport = response.map((userEvent) => userEvent.favourite === true);
+         });
+       }
+     }
+     this.cdRef.detectChanges();
+   });
 
     this.homeService.getEventsByTypeFestival("food").subscribe(
 
@@ -207,6 +210,49 @@ private refreshTriggered: boolean = false;
     }
   }
 
+  favouritesSport(eventId: number) {
+    if (this.authServ.login) {
+      console.log('ciaoo');
+
+      let username = localStorage.getItem('username') ?? '';
+      if (username) {
+        this.dataServ.getSingle(username).subscribe(
+          (response: RecoverId) => {
+            // Assign the 'id' from the response to 'this.data.userId'
+            this.data = new UserEvent();
+            this.data.eventId = eventId;
+            this.data.userId = response.id; // Set userId here
+            console.log(this.data);
+
+            // Find the clicked event by its eventId and toggle its favourite property
+            const clickedEventsports = this.sportEvents.find(event => event.id === eventId);
+            if (clickedEventsports) {
+              clickedEventsports.favourite = !clickedEventsports.favourite;
+
+              // Send the request to create/update the event
+               this.homeService.createEvents(this.data).subscribe(
+                 (response) => {
+                   console.log(response);
+                 },
+                 (error) => {
+                   this.handleServiceError(error);
+                   this.errorUserEvent = this.error;
+                   alert(this.errorUserEvent);
+                   this.isSendPost = true;
+                 }
+               );
+            }
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      }
+    } else {
+      this.openDialog('3000ms', '1500ms');
+    }
+  }
+
 
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -219,6 +265,22 @@ private refreshTriggered: boolean = false;
       });
     }
 
+    ngOnDestroy(): void {
+       // Retrieve the stored values from localStorage
+  const storedActiveArray = localStorage.getItem('activeArray');
+
+  // Define an array to store the retrieved values or use an empty array if not found
+  let activeArray: boolean[] = [];
+
+  if (storedActiveArray) {
+    activeArray = JSON.parse(storedActiveArray);
+  }
+
+  // Save the retrieved values to the class variable
+  this.isActiveArray = activeArray;
 
 
 }
+
+}
+
