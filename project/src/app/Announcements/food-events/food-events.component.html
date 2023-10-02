@@ -1,10 +1,10 @@
 <div>
   <div>
     <h2 class="text-center fs-2 m-3">Food Festival</h2>
-    <mat-dialog-content  class="mat-typography">
-      <form [formGroup]="myForm" (ngSubmit)="onCreatePost()" class="w-75" >
-        <div class="container text-center">
-          <div class="row align-items-start">
+    <div class="mat-typography p-5">
+      <form [formGroup]="myForm" (ngSubmit)="onCreatePost()">
+        <div class="container-fluid">
+          <div class="row">
             <div class="col">
               <div>
                 <mat-form-field class="example-full-width">
@@ -62,6 +62,12 @@
               </div>
 
 
+
+
+            </div>
+
+
+            <div class="col">
               <div>
                 <mat-form-field class="example-full-width">
                   <mat-label>Address</mat-label>
@@ -86,9 +92,6 @@
                   La regione è <strong>richiesta</strong>
                 </mat-error>
               </div>
-
-            </div>
-            <div class="col">
               <div>
                 <mat-form-field class="example-full-width">
                   <mat-label>Scegli Provincia</mat-label>
@@ -117,15 +120,9 @@
                 </mat-error>
               </div>
 
-              <div>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Scrivi una descrizione dell'evento</mat-label>
-                  <textarea formControlName="description" matInput></textarea>
-                </mat-form-field>
-                <mat-error *ngIf="myForm.get('description')?.hasError('required')">
-                  La descrizione è <strong>richiesta</strong>
-                </mat-error>
-              </div>
+            </div>
+
+            <div class="col">
 
               <div>
                 <mat-form-field class="example-full-width">
@@ -176,6 +173,10 @@
                 </mat-form-field>
               </div>
 
+            </div>
+
+
+            <div class="col">
               <div>
                 <mat-form-field class="example-full-width">
                   <mat-label>L'evento è adatto ai Disabili</mat-label>
@@ -198,103 +199,109 @@
                   </mat-select>
                 </mat-form-field>
 
-              </div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <mat-label> Tipo di Bevande</mat-label>
+                    <mat-select formControlName="drinks" multiple>
+                      <mat-option *ngFor="let drink of drinksList" [value]="drink">{{ drink }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
 
-              <div>
-                <mat-form-field class="example-full-width">
-                  <mat-label> Tipo di Bevande</mat-label>
-                  <mat-select formControlName="drinks" multiple>
-                    <mat-option *ngFor="let drink of drinksList" [value]="drink">{{ drink }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
+                </div>
 
-              </div>
-
-              <div>
-                <mat-form-field class="example-full-width">
-                  <mat-label> Tipo di dieta</mat-label>
-                  <mat-select formControlName="dietaryInfo" multiple>
-                    <mat-option *ngFor="let diet of dietaryInfos" [value]="diet">{{ diet }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+                <div>
+                  <mat-form-field class="example-full-width">
+                    <mat-label> Tipo di dieta</mat-label>
+                    <mat-select formControlName="dietaryInfo" multiple>
+                      <mat-option *ngFor="let diet of dietaryInfos" [value]="diet">{{ diet }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
 
 
             </div>
 
 
 
-            <div class="col">
-              <div formArrayName="imageMetadataList">
-                <div class="form-group" *ngFor="let imageControl of getImages(); let i = index" [formGroupName]="i">
-                  <mat-form-field class="example-full-width">
-                    <mat-label for="images">Image {{ i + 1 }}</mat-label>
-                    <input appSpacing type="text" matInput formControlName="filePath">
+          </div>
+
+
+
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="example-full">
+                    <mat-label>Scrivi una descrizione dell'evento</mat-label>
+                    <textarea formControlName="description" matInput></textarea>
                   </mat-form-field>
+                  <mat-error *ngIf="myForm.get('description')?.hasError('required')">
+                    La descrizione è <strong>richiesta</strong>
+                  </mat-error>
                 </div>
               </div>
-              <button type="button" class="btn btn-success" (click)="addImages()">Aggiungi Immagini</button>
+
+            </div>
 
 
-              <div formArrayName="sponsorsList">
-                <div class="form-group" *ngFor="let sponsorControl of getSponsors(); let i = index" [formGroupName]="i">
-                  <div class="d-flex justify-content-center">
-                    <div class="m-3">
-                      <mat-form-field class="example-full-width">
-                        <mat-label for="sponsors">Name Sponsor {{ i + 1 }}</mat-label>
-                        <input appSpacing type="text" matInput formControlName="nameSponsor" placeholder="Name Sponsor">
-                      </mat-form-field>
+              <div class="col mt-5 mb-5">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col ">
+                      <div formArrayName="imageMetadataList">
+                        <div class="form-group" *ngFor="let imageControl of getImages(); let i = index" [formGroupName]="i">
+                          <mat-form-field class="example-full-width">
+                            <mat-label for="images">Image {{ i + 1 }}</mat-label>
+                            <input appSpacing type="text" matInput formControlName="filePath">
+                          </mat-form-field>
+                        </div>
+                      </div>
                     </div>
-                    <div class="m-3">
-                      <mat-form-field class="example-full-width">
-                        <mat-label for="sponsors">Websites {{ i + 1 }}</mat-label>
-                        <input appSpacing type="text" matInput formControlName="websites" placeholder="Websites">
-                      </mat-form-field>
+                  </div>
+                  <button type="button" class="btn btn-success" (click)="addImages()">Aggiungi Immagini</button>
+                </div>
+              </div>
+              <div class="col mb-5 mt-5">
+                <div formArrayName="sponsorsList">
+                  <div class="form-group" *ngFor="let sponsorControl of getSponsors(); let i = index" [formGroupName]="i">
+                    <div class="d-flex justify-content-center">
+                      <div class="">
+                        <mat-form-field class="example-full-width">
+                          <mat-label for="sponsors">Name Sponsor {{ i + 1 }}</mat-label>
+                          <input appSpacing type="text" matInput formControlName="nameSponsor" placeholder="Name Sponsor">
+                        </mat-form-field>
+                      </div>
+                      <div class="">
+                        <mat-form-field class="example-full-width">
+                          <mat-label for="sponsors">Websites {{ i + 1 }}</mat-label>
+                          <input appSpacing type="text" matInput formControlName="websites" placeholder="Websites">
+                        </mat-form-field>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <button type="button" class="btn btn-success" (click)="addSponsorsList()">Aggiungi Sponsor</button>
               </div>
-              <button type="button" class="btn btn-success" (click)="addSponsorsList()">Aggiungi Sponsor</button>
 
 
-            </div>
           </div>
         </div>
+
+
         <div class="text-center fs-2">
-          <mat-dialog-actions align="center">
-            <button mat-button mat-dialog-close>Reset</button>
+          <mat-dialog-actions align="center" class="button-group">
+            <button mat-button mat-dialog-close class="reset-button">Reset</button>
+            <button type="submit" mat-button cdkFocusInitial *ngIf="!modifyTrue" class="create-button">Crea Evento</button>
 
-      <button type="submit" mat-button cdkFocusInitial *ngIf="!modifyTrue">
-              Crea Evento
-            </button>
-
-
-            <button type="button" mat-button cdkFocusInitial *ngIf="modifyTrue" (click)="modifyEventFestival(responseData?.eventType ?? '', responseData?.id ?? 0)">
-              Modifica Evento
-            </button>
+            <button type="button" mat-button cdkFocusInitial *ngIf="modifyTrue" (click)="modifyEventFestival(responseData?.eventType ?? '', responseData?.id ?? 0)" class="modify-button">Modifica Evento</button>
 
 
           </mat-dialog-actions>
 
         </div>
       </form>
-    </mat-dialog-content>
-    <!-- <div class="errormsg">
-      <mat-error *ngIf="error">{{ error }}</mat-error>
-      <mat-card *ngIf="success" class="success-card">
-        <mat-card-content>
-          <p class="success-message">{{ success }}</p>
-        </mat-card-content>
-      </mat-card>
-
     </div>
-
-    <div *ngIf="!isSendPost">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
-    </div>
-
-  </div> -->
 
 
 </div>
