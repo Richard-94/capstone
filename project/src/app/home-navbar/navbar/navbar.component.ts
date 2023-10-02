@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 
     this.dialogService.responseDataUser$.subscribe((response)=>{
-      //console.log(response);
+      console.log(response);
       if(response){
         this.username = response.username as string
 

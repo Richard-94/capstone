@@ -67,6 +67,42 @@ a{
    scale: 1.1;
   }
 
+  h1,h2{
+    color: #85C988;
+    text-transform: uppercase;
+  }
+  ul li a {
+    color: #00FFFF; /* Default text color */
+    transition: color 0.2s, text-decoration 0.2s; /* Smooth color and underline transition over 0.2 seconds */
+  }
+
+  ul li a:hover {
+    color: #FF4500; /* New text color on hover */
+    text-decoration: underline; /* Underline the text on hover */
+  }
+
+
+
+  ul.nav li.nav-item {
+    display: inline-block;
+  }
+
+  ul.nav li.nav-item a.nav-link {
+    text-decoration: none;
+    font-size: 3rem;
+    color: rgb(189, 127, 127);
+    transition: color 0.2s;
+  }
+
+  ul.nav li.nav-item a.nav-link.active {
+    color: greenyellow;
+  }
+
+  div[ngSwitch] {
+    margin-top: 20px;
+  }
+
+
 
 
 

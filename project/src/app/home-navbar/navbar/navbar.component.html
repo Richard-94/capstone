@@ -7,7 +7,7 @@
 
 
     <div id="fill">
-      <div class="search-container alternative">
+      <div class="search-container alternative me-5">
 
           <input type="text" (keyup.enter)="typedText(searchInput)"
           #searchInput
@@ -18,7 +18,7 @@
       </div>
 
   </div>
-<div class="mobile justify-content-between">
+  <div class="mobile justify-content-between mt-2">
   <ng-container   *ngIf="!authServ.login">
 
     <div class="dialog d-flex">
@@ -44,19 +44,29 @@
     </div>
   </ng-container>
   <div class="d-flex justify-content-between">
-    <ng-container *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
+    <div *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
+      <div class="admin fs-3 ">
+        <p>
+          <a routerLink="/admin">Pagina Admin</a>
+        </p>
+      </div>
 
-      <p>
-        <a routerLink="/admin">Pagina Admin</a>
-      </p>
-    </ng-container>
+    </div>
 
-    <ng-container *ngIf="authServ.login">
+    <ng-container  *ngIf="authServ.login">
+      <div class="admin page">
+        <p class="me-5">
+          <a class="nav-link admin fs-4" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill" [src]="image" height="50px" />
+          </a>
+        </p>
+      </div>
 
-      <p class="me-5">
-        <a class="nav-link" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill ms-3" [src]="image" width=40px alt="My Image"/> </a>
-      </p>
-      <button type="button" mat-raised-button (click)="authServ.logout()">Logout</button>
+      <button class="dialog" type="button"
+      type="button"
+              class="p-3 fs-5 log-buttons first-button"
+              mat-raised-button
+              color="primary"
+      (click)="authServ.logout()">Logout</button>
     </ng-container>
   </div>
 
@@ -94,8 +104,8 @@
 
         <ng-container *ngIf="authServ.login && authServ.currentUser.roles.includes('ROLE_ADMIN')" class="me-5">
 
-          <p>
-            <a routerLink="/admin">Pagina Admin</a>
+          <p class="admin fs-3 ">
+            <a class="text-black" routerLink="/admin">Pagina Admin</a>
           </p>
         </ng-container>
 
@@ -104,7 +114,12 @@
           <p class="me-5">
             <a class="nav-link" [routerLink]="['/userInfo', username]" routerLinkActive="active">Ciao {{username}} <img class="rounded-pill ms-3" [src]="image" width=40px alt="My Image"/> </a>
           </p>
-          <button type="button" mat-raised-button (click)="authServ.logout()">Logout</button>
+          <button
+          type="button"
+          class="p-3 fs-5 log-buttons first-button"
+          mat-raised-button
+          color="primary"
+          (click)="authServ.logout()">Logout</button>
         </ng-container>
       </div>
     </nav>

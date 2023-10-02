@@ -294,116 +294,116 @@ position: absolute;
 
 }
 
-@media (min-width: 500px) and (max-width: 900px) {
-  .image-container {
-    padding-bottom: 0; /* Remove the padding to allow images to appear on top */
-    position: relative;
-  }
+// @media (min-width: 500px) and (max-width: 900px) {
+//   .image-container {
+//     padding-bottom: 0; /* Remove the padding to allow images to appear on top */
+//     position: relative;
+//   }
 
-  .image-background img {
-    position: relative;
-    display: block;
+//   .image-background img {
+//     position: relative;
+//     display: block;
 
-    opacity: 1; /* Set opacity to 1 to make the images fully visible */
-    //animation-name: none; /* Remove animation */
+//     opacity: 1; /* Set opacity to 1 to make the images fully visible */
+//     //animation-name: none; /* Remove animation */
 
-  }
+//   }
 
-  /* Adjust the positioning of .order-2 to make it part of the flow */
-  .order-2 {
+//   /* Adjust the positioning of .order-2 to make it part of the flow */
+//   .order-2 {
 
-    position: relative;
-   //bottom: 100px;
-   left: 0%;
-   top: 300px;
-   margin: 30px;
-   width: 100%;
-
-
-  .icons,strong{
-    font-size: 1rem;
-  }
+//     position: relative;
+//    //bottom: 100px;
+//    left: 0%;
+//    top: 300px;
+//    margin: 30px;
+//    width: 100%;
 
 
-  }
+//   .icons,strong{
+//     font-size: 1rem;
+//   }
 
 
-.information {
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
-  width: 100%;
-  h1{
-    font-size: 1.6rem;
-    text-align: center;
-
-  }
+//   }
 
 
-  .description{
+// .information {
+//   border-top-right-radius: 80px;
+//   border-bottom-right-radius: 80px;
+//   width: 100%;
+//   h1{
+//     font-size: 1.6rem;
+//     text-align: center;
 
-    h2{
-      font-size: 1.3rem;
-    }
-    p{
-      font-size: 0.8rem;
-    }
-
-  }
-  position: relative;
-
-  padding: 20px !important;
-    background-color:white;
+//   }
 
 
-  }
+//   .description{
 
-  .address span{
-    font-size: 1rem;
-  }
+//     h2{
+//       font-size: 1.3rem;
+//     }
+//     p{
+//       font-size: 0.8rem;
+//     }
 
+//   }
+//   position: relative;
 
-  .image-background {
-
-    position: absolute;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .info-sport-background::before {
-    background-color: #fff;;
-
-  }
-
-  .order-2::before {
-   display: none;
-  }
+//   padding: 20px !important;
+//     background-color:white;
 
 
+//   }
+
+//   .address span{
+//     font-size: 1rem;
+//   }
 
 
-}
+//   .image-background {
+
+//     position: absolute;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//   }
+
+//   @keyframes fadeIn {
+//     0% {
+//       opacity: 0;
+//     }
+//     50% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 0;
+//     }
+//   }
+
+//   @keyframes fadeOut {
+//     0% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 0;
+//     }
+//   }
+
+//   .info-sport-background::before {
+//     background-color: #fff;;
+
+//   }
+
+//   .order-2::before {
+//    display: none;
+//   }
+
+
+
+
+// }
 
 
 

@@ -29,6 +29,48 @@ $color:green; //Giving a variable;
   @include soft-border1(10px);
 }
 
+.admin {
+  display: flex; /* To ensure child elements align horizontally */
+  align-items: center; /* Vertically align content */
+  //margin-right: 60px; /* Reduced margin for better spacing */
+}
+
+.page {
+
+  margin-right: 110px; /* Reduced margin for better spacing */
+}
+
+.admin a {
+  text-decoration: none;
+  color: rgb(194, 219, 156); /* Default link color */
+  position: relative; /* Needed for pseudo-element */
+
+  transition: color 0.2s; /* Smooth color transition on hover */
+}
+
+.admin a:hover {
+  color: greenyellow; /* Text color on hover */
+}
+
+.admin a::after {
+  content: ''; /* Create a pseudo-element for the underline */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px; /* Adjust this value to control the underline thickness */
+  background-color: greenyellow; /* Underline color */
+  height: 2px; /* Underline height */
+  transform: scaleX(0); /* Initially, the underline is invisible */
+  transform-origin: center; /* Scale from the center */
+  transition: transform 0.2s; /* Smooth transition for the underline */
+}
+
+.admin a:hover::after {
+  transform: scaleX(1); /* Show the underline on hover */
+}
+
+
+
 .mat-toolbar {
   position: fixed;
 
@@ -38,6 +80,7 @@ $color:green; //Giving a variable;
   z-index: 2;
   top: 0;
   left: 0;
+  padding: 40px;
 
 }
 
@@ -105,6 +148,7 @@ $color:green; //Giving a variable;
   text-align: center;
 
    }
+
 
 
    @media (min-width: 200px) and (max-width: 600px) {
