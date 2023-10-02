@@ -70,7 +70,14 @@ a{
   h1,h2{
     color: #85C988;
     text-transform: uppercase;
+    margin-bottom: 30px;
   }
+
+  h2{
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+  }
+
   ul li a {
     color: #00FFFF; /* Default text color */
     transition: color 0.2s, text-decoration 0.2s; /* Smooth color and underline transition over 0.2 seconds */
@@ -90,7 +97,7 @@ a{
   ul.nav li.nav-item a.nav-link {
     text-decoration: none;
     font-size: 3rem;
-    color: rgb(189, 127, 127);
+    color: rgb(160, 2, 2);
     transition: color 0.2s;
   }
 
@@ -141,7 +148,7 @@ a{
 }
 
 mat-raised-button{
-  color: green($color: #000000);
+  color: green;
 }
 
 

@@ -8,7 +8,7 @@
       <a class="nav-link" [class.active]="viewMode === 'Food_festival'" (click)="viewMode = 'Food_festival'">Street Food</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [class.active]="viewMode === 'Bambini'" (click)="viewMode = 'children'">Festa Bambini</a>
+      <a class="nav-link" [class.active]="viewMode === 'Bambini'" (click)="viewMode = 'Bambini'">Festa Bambini</a>
     </li>
   </ul>
 
@@ -26,6 +26,7 @@
 
   <div class="full-sport mt-5 event-definition">
     <h2 class="mb-5">Eventi che hai creato</h2>
+
     <div id="sport" class="mb-5 sport-event">
       <div *ngFor="let events of userEvents; let i = index" id="likes" class="container-fluid">
         <div class="container-fluid">

@@ -252,7 +252,7 @@
                       <div formArrayName="imageMetadataList">
                         <div class="form-group" *ngFor="let imageControl of getImages(); let i = index" [formGroupName]="i">
                           <mat-form-field class="example-full-width">
-                            <mat-label for="images">Image {{ i + 1 }}</mat-label>
+                            <mat-label for="images">Immagini {{ i + 1 }}</mat-label>
                             <input appSpacing type="text" matInput formControlName="filePath">
                           </mat-form-field>
                         </div>
@@ -266,15 +266,15 @@
                 <div formArrayName="sponsorsList">
                   <div class="form-group" *ngFor="let sponsorControl of getSponsors(); let i = index" [formGroupName]="i">
                     <div class="d-flex justify-content-center">
-                      <div class="">
+                      <div class="me-4">
                         <mat-form-field class="example-full-width">
-                          <mat-label for="sponsors">Name Sponsor {{ i + 1 }}</mat-label>
+                          <mat-label for="sponsors">Nome Sponsor {{ i + 1 }}</mat-label>
                           <input appSpacing type="text" matInput formControlName="nameSponsor" placeholder="Name Sponsor">
                         </mat-form-field>
                       </div>
                       <div class="">
                         <mat-form-field class="example-full-width">
-                          <mat-label for="sponsors">Websites {{ i + 1 }}</mat-label>
+                          <mat-label for="sponsors">Sito {{ i + 1 }}</mat-label>
                           <input appSpacing type="text" matInput formControlName="websites" placeholder="Websites">
                         </mat-form-field>
                       </div>

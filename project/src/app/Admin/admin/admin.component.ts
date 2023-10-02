@@ -125,7 +125,7 @@ activateViewMode(mode: string, eventId: number) {
 
 
   getSingleEventChildren(type: string, idEvent: number) {
-    this.adminServ.getSingleEventChildren(type='bambini' , idEvent).subscribe(
+    this.adminServ.getSingleEventChildren(type='children' , idEvent).subscribe(
       (response) => {
         this.modify = true
         this.detailsChildren = response;

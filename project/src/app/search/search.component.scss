@@ -3,17 +3,14 @@ a{
 }
 
 #admin {
-  position: absolute;
+
   margin-top: 200px;
-  left: 50%;
-  transform: translate(-50%);
-  text-align: center;
+
 
 }
 
 #sport{
-  position: relative;
-  transform: translate(-50%);
+
   padding: 30px;
 }
 @import '~bootstrap-icons/font/bootstrap-icons.css';
@@ -62,7 +59,7 @@ a{
 
 
 
- #sport,#party {
+ .sport,.party {
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(350px, 4fr));
    grid-gap: 3rem;
@@ -87,6 +84,170 @@ a{
 
   .scaleCard:hover {
    scale: 1.1;
+  }
+
+
+
+  h1{
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 576px) {
+    h2 {
+      font-size: 20px; /* Further reduce heading font size for very small screens */
+    }
+    .sport, .party {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 2fr));
+      padding: 1px;
+      justify-content: center; /* Center the grid horizontally */
+      align-items: center; /* Center the grid vertically */
+    }
+
+    .card{
+      padding: 15px !important;
+
+    }
+    #right img{
+      border-radius: 25px !important;
+     }
+
+     @media (min-width: 600px) and (max-width: 1100px) {
+      .description {
+        display: none;
+      }
+
+      .description h1 strong {
+        font-size: 3rem !important;
+      }
+
+       .events{
+
+         font-size: 4rem;
+
+         .events-text{
+           text-align: center;
+           font-size: 1rem;
+         }
+       }
+
+
+        .sport,.party {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+        grid-gap: 3rem;
+      }
+
+    }
+
+
+    @media (min-width: 600px) and (max-width: 1100px) {
+      .description {
+        display: none;
+      }
+
+      .description h1 strong {
+        font-size: 3rem !important;
+      }
+
+       .events{
+
+         font-size: 4rem;
+
+         .events-text{
+           text-align: center;
+           font-size: 1rem;
+         }
+       }
+
+
+        .sport,.party {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+        grid-gap: 3rem;
+      }
+
+    }
+
+
+
+    @media (min-width: 200px) and (max-width:600px) {
+      .description {
+        display: none;
+      }
+
+      .description h1 strong {
+        font-size: 2rem !important;
+      }
+
+       .events{
+
+         font-size: 4rem;
+
+         .events-text{
+           text-align: center;
+           font-size: 1rem;
+         }
+       }
+
+
+        .sport,.party {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+        grid-gap: 3rem;
+      }
+
+    }
+
+    /* Default styles for screens larger than 768px */
+
+    /* Media query for screens 768px and below */
+    @media (max-width: 768px) {
+      .full-sport,
+      .full-festival,
+      .full-children {
+        padding-top: 10px; /* Add some spacing at the top for smaller screens */
+      }
+
+      h2 {
+        font-size: 24px; /* Reduce heading font size for smaller screens */
+      }
+
+      .scaleCard {
+        width: 100%;
+        padding: 1px;
+
+      }
+    }
+
+    /* Media query for screens 576px and below */
+    @media (max-width: 576px) {
+      h2 {
+        font-size: 20px; /* Further reduce heading font size for very small screens */
+      }
+      .sport, .party {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 2fr));
+        padding: 1px;
+        justify-content: center; /* Center the grid horizontally */
+        align-items: center; /* Center the grid vertically */
+      }
+
+      .card{
+        padding: 15px !important;
+
+      }
+      #right img{
+        border-radius: 25px !important;
+       }
+
+    }
+
+
+
+
+
+
+
   }
 
 

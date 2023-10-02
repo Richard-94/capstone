@@ -18,7 +18,7 @@ export class Children {
   address?:string;
   region?:string
   province?:string;
-  date: Date | undefined;
+  date: string | undefined;
   description: string | undefined;
   town?:string;
   imageMetadataList?: { filePath: string }[] = [];
@@ -42,7 +42,7 @@ export class Children {
     title: string | undefined;
     location: string | undefined;
     time: string | undefined;
-    date: Date | undefined;
+    date: string | undefined;
     participants: string | number| undefined;
     address: string | undefined;
     region: string | undefined;

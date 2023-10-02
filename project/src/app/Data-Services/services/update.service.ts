@@ -1,10 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Children } from 'src/app/Classes/children';
 import { Festival } from 'src/app/Classes/festivalEvent';
 import { Sports } from 'src/app/Classes/sportEvent';
 
-export type EventDetails = Sports | Festival;
+export type EventDetails = Sports | Festival | Children;
 
 @Injectable({
   providedIn: 'root'

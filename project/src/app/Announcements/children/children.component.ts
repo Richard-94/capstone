@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { AdminComponent } from 'src/app/Admin/admin/admin.component';
 import { Children } from 'src/app/Classes/children';
 import { Province } from 'src/app/Classes/province';
 import { ProvinceService } from 'src/app/Data-Services/province.service';
 import { ChildrenService } from 'src/app/Data-Services/services/children.service';
+import { UpdateService } from 'src/app/Data-Services/services/update.service';
 
 @Component({
   selector: 'app-children',
@@ -13,6 +15,8 @@ import { ChildrenService } from 'src/app/Data-Services/services/children.service
 })
 export class ChildrenComponent {
   @Input()  responseDataChildren$?: Observable<Children| undefined>;
+  @Input() responseModify$?: Observable<boolean | undefined>;
+  responseData: Children = new Children();
   showForm?: boolean
   isSendPost: boolean = true;
   error?:Response;
@@ -40,16 +44,30 @@ export class ChildrenComponent {
   animations= new FormControl([],Validators.required);
   childrenEvent: Children= new  Children();
   storedUsername = localStorage.getItem('username');
+  modifyTrue?:boolean
+  modifyEvent:boolean = true;
 
 
 
 
 
-  constructor(private province:ProvinceService,private child:ChildrenService) {
+
+  constructor(private province:ProvinceService,private child:ChildrenService,
+    private updateServ:UpdateService,
+    private adminComponent: AdminComponent) {
 
   }
   ngOnInit(): void {
     this.getProvince();
+
+    this.adminComponent.truthyData.subscribe((modify: boolean | undefined) => {
+      if (modify !== undefined) {
+
+        this.modifyTrue=modify
+        console.log('Modify value:', modify);
+      }
+    });
+
 
 
     const initialImages = [{ filePath: '' }];
@@ -60,6 +78,11 @@ export class ChildrenComponent {
     const initialSponsors = [{ nameSponsor: '', websites:'' }];
     initialSponsors.forEach(sponsor => {
       this.addSponsors(sponsor);
+    });
+
+    const initialAges = [{ ageRange: '' }];
+    initialAges.forEach(age => {
+      this. addAgedata(age);
     });
   }
 
@@ -88,6 +111,28 @@ export class ChildrenComponent {
    sponsorsList:new FormArray([])
 
   });
+
+  formattedTime(timeValue: string): string | undefined {
+    const timeParts = timeValue.match(/(\d+):(\d+) ([APap][Mm])/); // Match "hh:mm AM/PM" format
+
+    if (timeParts && timeParts.length === 4) {
+      const hours = parseInt(timeParts[1]);
+      const minutes = parseInt(timeParts[2]);
+      const isPM = timeParts[3].toLowerCase() === 'pm';
+
+      let formattedHours = hours;
+      if (isPM && hours !== 12) {
+        formattedHours += 12;
+      } else if (!isPM && hours === 12) {
+        formattedHours = 0;
+      }
+
+      return `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+    } else {
+      console.log(`Invalid time format: ${timeValue}`);
+      return undefined; // Return undefined for invalid formats
+    }
+  }
 
 
   updateUsersDataFromFormValues() {
@@ -124,13 +169,14 @@ export class ChildrenComponent {
 
   const formattedTime = formValue.time ? formatTime(formValue.time) : '';
   console.log(`Original time: ${timeValue}, Formatted time: ${formattedTime}`);
+  const storedUsername = localStorage.getItem('username');
 
 
-    this. childrenEvent. childrenEvents = {
+    this.childrenEvent.childrenEvents = {
      title: formValue.title || undefined,
       location: formValue.location || undefined,
       time: formattedTime,
-      date: dateValue ? new Date(dateValue) : undefined,
+      date: formValue.date || undefined,
       participants: formValue.participants || undefined,
       address: formValue.address || undefined,
       region: formValue.region || undefined,
@@ -143,12 +189,8 @@ export class ChildrenComponent {
       eventType: formValue.eventType || undefined,
       price: formValue.price || undefined,
       imageMetadataList: formValue.imageMetadataList || undefined,
-      ageRanges:formValue.ageRanges || undefined,
       sponsorsList: formValue.sponsorsList || undefined,
-      themes: formValue.themes|| undefined,
-      activities: formValue.activities || undefined,
-      animations: formValue.animations || undefined,
-      games: formValue.games || undefined,
+
       createdByUser:this.storedUsername  || undefined
     };
   }
@@ -320,6 +362,69 @@ export class ChildrenComponent {
       });
       imageMetadataList.push(imageGroup);
     }
+
+
+
+   modifyEventChildren(eventType: string, id: number) {
+    const formValue = this.myForm.value;
+    const timeValue = formValue.time || ''; // Get the time value separately
+    const formattedTime = this.formattedTime(timeValue);
+
+    const storedUsername = localStorage.getItem('username');
+
+    if (this.isSendPost) {
+      const formValue = this.myForm.value;
+      const timeValue = formValue.time || ''; // Get the time value separately
+      const formattedTime = this.formattedTime(timeValue);
+
+      const storedUsername = localStorage.getItem('username');
+      this.child.getSingleEvent('children', id).subscribe(existingEvent => {
+        console.log(existingEvent);
+        console.log(id);
+
+        this.modifyEvent = true
+
+        if (existingEvent) {
+          // Creare un oggetto per sportsEvents con i dati dal form
+          const childrenEvents = {
+            id: id || undefined, // Include the id here
+            title: this.myForm.value.title || undefined,
+            location: this.myForm.value.location || undefined,
+            date: this.myForm.value.date || undefined,
+            participants: this.myForm.value.participants || undefined,
+            time: formattedTime || undefined,
+            address: this.myForm.value.address || undefined,
+            region: this.myForm.value.region || undefined,
+            province: this.myForm.value.province || undefined,
+            town: this.myForm.value.town || undefined,
+            description: this.myForm.value.description || undefined,
+            organizer: this.myForm.value.organizer || undefined,
+            createdByUser:this.storedUsername  || undefined,
+            info_event: this.myForm.value. info_event|| undefined,
+            eventType:this.myForm.value.eventType|| undefined,
+            price:this.myForm.value.price|| undefined,
+            disabilities:this.myForm.value.disabilities || undefined,
+            imageMetadataList: this.myForm.value.imageMetadataList || undefined,
+            sponsorsList: this.myForm.value.sponsorsList || undefined,
+
+
+          };
+
+          // Aggiungi sportsEvents all'oggetto existingEvent
+          existingEvent.childrenEvents = childrenEvents;
+
+          // Esegui l'operazione di aggiornamento dell'evento esistente
+          this.updateServ.update(existingEvent, 'children', id).subscribe((response) => {
+            console.log(id);
+            this.myForm.reset()
+
+            console.log('Event updated', response);
+            console.log(this.modifyEvent);
+          });
+        }
+      });
+    }
+  }
 
 }
 
