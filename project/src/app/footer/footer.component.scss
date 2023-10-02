@@ -1,0 +1,102 @@
+#fascia_contatti, #fascia_contatti a {
+  background-color: green;
+  color: rgb(245, 245, 245);
+  font-size: 18px;
+  text-decoration: none;
+
+
+  width: 100%;
+
+
+}
+
+#fascia_contatti a:hover {
+  text-decoration: underline;
+}
+
+#fascia_contatti {
+  padding: 50px;
+}
+
+#contatti_generali {
+  line-height: 25px;
+  padding-right: 60px;
+}
+
+#fascia_contatti ul {
+
+  line-height: 25px;
+  list-style-type: none;
+  padding: 0;
+  li a{
+    font-size: 1.1rem;
+    line-height: 2;
+  }
+}
+
+h3{
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 1.8em;
+}
+
+
+
+
+#paragrafo_title a:hover {
+  text-decoration: underline;
+}
+
+
+
+@media (min-width: 500px) and (max-width: 900px) {
+  #fascia_contatti {
+
+    bottom: 0;
+    width: 100%;
+  }
+}
+/* Default styles for screens larger than 768px */
+#fascia_contatti {
+
+h3{
+
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+ul li a{
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+}
+
+/* Media query for screens 768px and below */
+@media (max-width: 768px) {
+  #contatti_info {
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  #info_scoprire,
+  #info_conoscere,
+  #info_visitare,
+  #info_strutture {
+    width: 100%; /* Expand elements to full width */
+    margin-bottom: 20px; /* Add some spacing between elements */
+  }
+
+  #info_strutture {
+    margin-top: 20px; /* Add top margin to the last element */
+  }
+}
+
+/* Media query for screens 576px and below */
+@media (max-width: 576px) {
+  /* Add additional styles for smaller screens if needed */
+}
+
+
+
+
+

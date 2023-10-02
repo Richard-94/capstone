@@ -1,0 +1,20 @@
+  .pop{
+    padding: 0 40px 0 30px;
+    .example-full-width{
+      width: 300px;
+      mat-error{
+        text-align: center;
+      }
+    }
+    .success-card {
+      background-color: #4caf50; /* Green color */
+      color: white; /* White text */
+    }
+
+    .success-message {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+

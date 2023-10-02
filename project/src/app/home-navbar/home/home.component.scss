@@ -1,0 +1,364 @@
+ @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+// ****************SPORT***************
+
+ $primary-color:#c6dd8c; //Giving a variable;
+ $sport-color: rgba(237, 30, 121,0.4);
+ $sport-text-color:#ED1E79;
+
+
+// ****************FESTIVAL***************
+ $primary-color:#c6dd8c; //Giving a variable;
+ $festival-color: rgba(65, 98, 180,0.6);
+ $festival-text-color:blue;
+
+
+
+ // ***************CHILDREN***************
+ $primary-color:#FFF9AE; //Giving a variable;
+ $children-color:#f0d27291;
+ $children-text-color:#E9D700;
+// *******************MIXING*************************************
+@mixin soft-border{
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.box{
+  @include soft-border();
+}
+
+.modern-box{
+  @include soft-border();
+}
+
+
+@mixin background-color($back-color){
+  background-color: $back-color !important;
+
+}
+
+@mixin text-colors($text-color){
+  color:$text-color
+}
+
+@mixin background-image($back-image){
+  background-image:  url($back-image);
+}
+
+@mixin title-price-color($paragraph-color){
+  color:$paragraph-color
+}
+
+
+
+
+
+
+.event-definition{
+  position: relative;
+  padding: 50px;
+  padding-top: 0;
+  h2{
+    font-size: 4rem !important;
+  }
+
+}
+.event-definition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size:cover;
+  z-index: -1;
+}
+
+
+.event-definition::after{
+  content: "";
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+.full-sport{
+  @include background-color($sport-color);
+  h2{
+    @include text-colors($sport-text-color);
+  }
+}
+
+.full-sport::before{
+  @include background-image("https://images.pexels.com/photos/2002209/pexels-photo-2002209.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.full-festival{
+  @include background-color($festival-color);
+  h2{
+    @include text-colors($festival-text-color);
+  }
+}
+
+.full-festival::before{
+  @include background-image("https://images.pexels.com/photos/3990348/pexels-photo-3990348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.full-children::before{
+  @include background-image("https://images.pexels.com/photos/6299265/pexels-photo-6299265.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+
+.full-children{
+  @include background-color($children-color);
+  h2{
+    @include text-colors($children-text-color);
+  }
+}
+
+
+.full-sport .title-price{
+  @include title-price-color($sport-text-color)
+}
+
+.full-festival .title-price{
+  @include title-price-color($festival-text-color)
+}
+
+.full-children .title-price{
+  @include title-price-color($children-text-color)
+}
+
+.full-children .title-price{
+  @include title-price-color($children-text-color)
+}
+
+ .sport,.party {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(350px, 4fr));
+   grid-gap: 3rem;
+ }
+
+ .event-definition{
+  .scaleCard {
+    transition: scale 200ms;
+    .card, img{
+     border-radius: 35px !important;
+    }
+    .title-price{
+     font-style: bold;
+     font-weight: 400;
+
+    }
+   }
+}
+
+
+
+  .scaleCard:hover {
+   scale: 1.1;
+  }
+
+/* Remove the max-width for images */
+.picsum-img-wrapper img {
+
+  max-width: none;
+  width: 100%;
+
+  object-fit: cover; /* Make sure the image covers the entire container */
+}
+
+.picsum-img-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-attachment: fixed ;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+// .sliding-images{
+//   position: relative;
+// }
+
+.description{
+  h1 strong{
+    font-size: 6rem !important;
+    transform: scaleX(4);
+  }
+  position: absolute;
+  bottom: 50px;
+  text-align: center;
+  align-items: center;
+  right: 30%;
+
+  p{
+    width: 700px;
+    color: white;
+    line-height: 1.5;
+    font-size: 1.2rem;
+  }
+
+}
+
+.events{
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: #85B034;
+  line-height: 1;
+  .events-text{
+    font-size: 1.5rem;
+  }
+}
+
+.show{
+  button{
+    border: 1px solid black;
+    background-color: $primary-color;
+    &:hover{
+      background-color: green;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+    }
+  }
+}
+
+/* Custom CSS to modify carousel navigation arrow size */
+
+.carousel-control-prev, .carousel-control-next{
+  display: block;
+  height: 0;
+padding: 0;
+margin: 0;
+display: none;
+}
+
+.active-star {
+  color: red;
+}
+
+.active-init {
+  color: red;
+}
+
+@media (min-width: 600px) and (max-width: 1100px) {
+  .description {
+    display: none;
+  }
+
+  .description h1 strong {
+    font-size: 3rem !important;
+  }
+
+   .events{
+
+     font-size: 4rem;
+
+     .events-text{
+       text-align: center;
+       font-size: 1rem;
+     }
+   }
+
+
+    .sport,.party {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+    grid-gap: 3rem;
+  }
+
+}
+
+
+
+@media (min-width: 200px) and (max-width:600px) {
+  .description {
+    display: none;
+  }
+
+  .description h1 strong {
+    font-size: 2rem !important;
+  }
+
+   .events{
+
+     font-size: 4rem;
+
+     .events-text{
+       text-align: center;
+       font-size: 1rem;
+     }
+   }
+
+
+    .sport,.party {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+    grid-gap: 3rem;
+  }
+
+}
+
+/* Default styles for screens larger than 768px */
+
+/* Media query for screens 768px and below */
+@media (max-width: 768px) {
+  .full-sport,
+  .full-festival,
+  .full-children {
+    padding-top: 10px; /* Add some spacing at the top for smaller screens */
+  }
+
+  h2 {
+    font-size: 24px; /* Reduce heading font size for smaller screens */
+  }
+
+  .scaleCard {
+    width: 100%;
+    padding: 1px;
+
+  }
+}
+
+/* Media query for screens 576px and below */
+@media (max-width: 576px) {
+  h2 {
+    font-size: 20px; /* Further reduce heading font size for very small screens */
+  }
+  .sport, .party {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 2fr));
+    padding: 1px;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+  }
+
+  .card{
+    padding: 15px !important;
+
+  }
+  #right img{
+    border-radius: 25px !important;
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// https://www.youtube.com/watch?v=k9pOWBPZ3aQ
+// https://www.youtube.com/watch?v=fkvv6WrDJPQ
+// https://www.youtube.com/watch?v=LqRfQVcn3FY

@@ -1,0 +1,78 @@
+h1{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+h1,h2{
+  text-transform: uppercase;
+  color: rgb(75, 223, 62);
+}
+
+
+#admin {
+
+  margin-top: 160px;
+
+
+}
+
+.image{
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+
+}
+
+.info p {
+  color: #81C385; /* Default color for all p elements */
+  /* Add any other default styles you want for p elements here */
+}
+
+.info p span {
+  color: inherit; /* Remove the color from p elements containing span */
+  /* Add any other styles you want to apply to span elements here */
+}
+
+@media (max-width: 576px) {
+  .profile  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile img {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 30px;
+  }
+
+  .info{
+    margin-right: 10px;
+    span{
+      font-size: 1rem !important;
+      margin-left: 10px;
+      text-align: center;
+    }
+    p{
+      font-size: 1.2rem !important;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

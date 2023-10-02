@@ -1,0 +1,91 @@
+<div class="text-center admin">
+  <h1>Sezione Admin</h1>
+  <ul class="nav justify-content-around fs-2">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="viewMode === 'Sport'" (click)="viewMode = 'Sport'">Eventi Sportivi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="viewMode === 'Food_festival'" (click)="viewMode = 'Food_festival'">Street Food</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="viewMode === 'Bambini'" (click)="viewMode = 'Bambini'">Festa Bambini</a>
+    </li>
+  </ul>
+
+  <div [ngSwitch]="viewMode">
+    <div class="text-white" *ngSwitchCase="'Sport'">
+      <app-sports-events [responseData$]="responseData$"></app-sports-events>
+    </div>
+    <div class="text-white" *ngSwitchCase="'Food_festival'">
+      <app-food-events [responseDataFestival$]="responseDataFestival$"></app-food-events>
+    </div>
+    <div class="text-white" *ngSwitchCase="'Bambini'">
+      <app-children [responseDataChildren$] = "responseDataChildren$"></app-children>
+    </div>
+  </div>
+
+  <div class="full-sport mt-5 event-definition">
+    <h2 class="mb-5">Eventi che hai creato</h2>
+
+    <div id="sport" class="mb-5 sport-event">
+      <div *ngFor="let events of userEvents; let i = index" id="likes" class="container-fluid">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="scaleCard m-0 p-0">
+              <div class="bg-white p-4 rounded card">
+                <div id="right" class="text-white">
+                  <div *ngIf="events.imageMetadataList">
+                    <img class="rounded img-fluid mb-3 image" [src]="events.imageMetadataList[0]?.filePath" alt="Random slide" />
+                  </div>
+                </div>
+                <div class="tristi">
+                  <p class="title-price fs-5"><strong>{{ events.title }}</strong></p>
+                  <div class="d-flex justify-content-between">
+
+                  </div>
+                  <div>
+                    <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.address }},{{(events.town)}}"
+                      target="_blank">{{(events.town)}}
+                        <i class="bi bi-pin-map-fill"></i></a></p>
+                    <p><i class="bi bi-calendar-date-fill"> {{events.date | date}}, {{events.time}}</i></p>
+                  </div>
+                </div>
+                <div class="pt-3 pb-1 text-white">
+                  <div class="d-flex justify-content-between">
+                    <div class="title-price">
+                      <i class="bi bi-currency-euro fs-5 m-1"><strong>{{ events.price === 'GRATIS' ? 'GRATIS' : events.price | currency:'EUR':true }}</strong></i>
+                    </div>
+                    <div>
+                      <div *ngIf="events.eventType === 'Sport'">
+                        <a class="nav-link" [routerLink]="['/navbar', 'sports', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                      </div>
+                      <div *ngIf="events.eventType === 'Food_festival'">
+                        <a class="nav-link" [routerLink]="['/navbar', 'food', events.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid mt-5">
+          <div class="row">
+            <div class="col">
+              <button type="button" (click)="events.id !== undefined ? deleteEvent(events.id) : null" mat-raised-button color="warn">Cancella Evento</button>
+            </div>
+            <div *ngIf="events.eventType === 'Sport'" class="col">
+              <button *ngIf="events.id !== undefined" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Sport</button>
+            </div>
+            <div *ngIf="events.eventType === 'Food_festival'" class="col">
+              <button *ngIf="events.id" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Festa</button>
+            </div>
+            <div *ngIf="events.eventType === 'Bambini'" class="col">
+              <button *ngIf="events.id" (click)="activateViewMode(events.eventType, events.id)" mat-raised-button color="primary">Modifica Bambini</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

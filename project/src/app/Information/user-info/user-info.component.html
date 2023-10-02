@@ -1,0 +1,69 @@
+<div id="admin" class="align-items-center justify-content-center">
+  <h1>Welcome to your profile page</h1>
+
+  <div class="profile mt-5" *ngIf="user">
+    <div class="me-5">
+      <img class="rounded-pill" height="230px" width="230px" [src]="user.avatar" alt="User Image"/>
+
+    </div>
+  <div class="info">
+    <p class="fs-2">Username: <span class="fs-3 text-black">{{ user.username }}</span> </p>
+    <p class="fs-2">Telephone: <span class="fs-3 text-black">{{user.telephone}} </span></p>
+    <p class="fs-2">Address: <span class="fs-3 text-black">{{user.address}}</span> </p>
+    <p class="fs-2">Email: <span class="fs-3 text-black">{{user.email}}</span> </p>
+  </div>
+
+
+</div>
+
+
+<div class="full-sport container-fluid mt-5 event-definition">
+  <h2 class="text-center">I tuoi Preferiti</h2>
+  <div id="sport" class="mb-5 sport-event">
+    <div class="row">
+      <div *ngFor="let events of favouriteEvents; let i = index" class="col-md-4">
+        <div class="scaleCard m-0 p-0">
+          <div class="bg-white p-3 rounded">
+            <div class="text-white">
+              <div *ngIf="events">
+                <div *ngIf="events.event && events.event.imageMetadataList">
+                  <img  class="mb-3 image img-fluid" [src]="events.event.imageMetadataList[0]?.filePath" alt="Random slide" />
+                </div>
+              </div>
+            </div>
+            <div class="tristi">
+              <p class="title-price fs-5"><strong>{{ events.event?.title }}</strong></p>
+              <div class="d-flex justify-content-between">
+                <!-- <p class="title-price"><strong>{{ events.type_of_sports }}</strong></p> -->
+              </div>
+              <div>
+                <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.event?.address }},{{(events.event?.town)}} "
+                  target="_blank">{{(events.event?.town)}}
+                    <i class="bi bi-pin-map-fill "> </i></a></p>
+                <p> <i class="bi bi-calendar-date-fill"> {{events.event?.date | date}}, {{events.event?.time}}</i> </p>
+              </div>
+            </div>
+            <div class="pb-1 mt-3">
+              <div class="d-flex justify-content-between">
+                <div class="title-price">
+                  <i  class=" bi-currency-euro fs-5 m-1"> <strong>{{ events.event?.price === 'GRATIS' ? 'GRATIS' : events.event?.price | currency:'EUR':true }}</strong>  </i>
+                </div>
+                <div *ngIf="events.event?.eventType==='Sport'">
+                  <a class="nav-link" [routerLink]="['/navbar', 'sports', events.event?.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                </div>
+                <div *ngIf="events.event?.eventType==='Food_festival'">
+                  <a class="nav-link" [routerLink]="['/navbar', 'food', events.event?.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+

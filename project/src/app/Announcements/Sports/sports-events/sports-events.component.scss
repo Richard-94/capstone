@@ -1,0 +1,103 @@
+.example-full-width,.ngx-timepicker-field-example{
+  width: 350px;
+}
+
+.example-full{
+  width: 100%;
+  margin-top: 30px;
+}
+
+div {
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    margin: 20px;
+  }
+
+  mat-dialog-content {
+    form {
+      width: 75%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-top: 10px;
+      }
+
+      .col {
+        flex: 1;
+        margin-right: 10px;
+
+        mat-form-field {
+          width: 100%;
+        }
+
+        .mat-select {
+          width: 100%;
+        }
+
+        .form-group {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          mat-form-field {
+            flex: 1;
+          }
+
+          .m-3 {
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+
+    .fs-2 {
+      font-size: 18px;
+    }
+
+    mat-dialog-actions {
+      display: flex;
+      justify-content: center;
+
+      button {
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2px solid green; /* Add a border at the top */
+  padding-top: 35px; /* Add top padding */
+
+  .mat-button {
+    border: 1px solid #333; /* Add a border */
+    padding: 10px 20px; /* Add padding */
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition */
+
+    &:hover {
+      background-color: #333; /* Background color on hover */
+      color: #fff; /* Text color on hover */
+    }
+  }
+
+  .reset-button,.modify-button, .create-button {
+    background-color: #81C385;
+    border-radius: 1px solid black;
+    padding: 25px;
+  }
+
+
+}
+
+

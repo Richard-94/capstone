@@ -1,0 +1,5 @@
+import { Festival } from "../Classes/festivalEvent";
+import { Sports } from "../Classes/sportEvent";
+type Event = Sports & Festival;
+type UserEvents = Event[];
+

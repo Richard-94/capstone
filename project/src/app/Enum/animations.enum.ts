@@ -1,0 +1,7 @@
+export enum Animations {
+  ANIMATORI,
+	MARIONETTISTI,
+	ARTISTI_DI_STRADA,
+	MAGIC_SHOW
+
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "upload-images-3cdf0": {
+      "hosting": {
+        "project": [
+          "upload-images-3cdf0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "upload-images-3cdf0"
+  }
+}
