@@ -56,7 +56,11 @@ a{
 }
 
 
-
+.title-price{
+  color:#85C988;
+  font-size: 1.5rem !important;
+  margin-right: 20px;
+}
 
 
  .sport,.party {
@@ -242,13 +246,23 @@ a{
 
     }
 
-
-
-
-
+    /* CSS for the hover effect */
 
 
   }
+
+  .scopri a {
+    text-decoration: none; /* Remove underline by default */
+    color: #000; /* Default text color */
+    transition: color 0.3s ease; /* Add a smooth color transition */
+    font-size: 1.6rem;
+  }
+
+  .scopri a:hover {
+    color: #ED1E79; /* Text color on hover */
+  }
+
+
 
 
 

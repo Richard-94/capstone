@@ -1,78 +1,63 @@
 
-$primary-color:#c6dd8c; //Giving a variable;
-$sport-color: rgba(237, 30, 121,0.4);
-$sport-text-color:#ED1E79;
+/* Define variables for colors */
+$primary-color: #c6dd8c; // Primary color
+$sport-color: rgba(237, 30, 121, 0.4); // Sport color
+$sport-text-color: #ED1E79; // Sport text color
+$festival-color: rgba(65, 98, 180, 0.6); // Festival color
+$festival-text-color: blue; // Festival text color
 
-
-// ****************FESTIVAL***************
-$primary-color:#c6dd8c; //Giving a variable;
-$festival-color: rgba(65, 98, 180,0.6);
-$festival-text-color:blue;
-
-@mixin background-color($back-color){
+/* Mixin for setting background color */
+@mixin background-color($back-color) {
   background-color: $back-color !important;
-
 }
 
-@mixin text-colors($text-color){
-  color:$text-color
+/* Mixin for setting text color */
+@mixin text-colors($text-color) {
+  color: $text-color;
 }
 
-@mixin background-image($back-image){
-  background-image:  url($back-image);
+/* Mixin for setting background image */
+@mixin background-image($back-image) {
+  background-image: url($back-image);
 }
 
-@mixin title-price-color($paragraph-color){
-  color:$paragraph-color
+/* Mixin for setting title and price color */
+@mixin title-price-color($paragraph-color) {
+  color: $paragraph-color;
 }
 
 
 
-.image-container {
-  position: relative;
-   width: 100%;
-  // padding-bottom: 70%;
-
-}
-
-.image-background {
-position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
- background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-//height: 100%;
+/* Styles for the img element with fade-in and fade-out effect */
+.image-fade-in-out {
+  position: absolute; /* Add this line to overlap images */
   opacity: 0;
-  animation-duration: 3s; /* Duration of each fade-in/fade-out */
-  animation-timing-function: ease-in-out; /* Timing function for smooth transitions */
-  animation-iteration-count: 1; /* Play animations only once */
-  animation-fill-mode: both; /* Keeps the last keyframe state */
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
 }
 
+/* Define the fade-in animation */
 .fade-in {
   animation-name: fadeIn;
 }
 
+/* Define the fade-out animation */
 .fade-out {
   animation-name: fadeOut;
 }
 
+/* Keyframes for fade-in animation */
 @keyframes fadeIn {
   0% {
     opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
   }
   100% {
     opacity: 1;
   }
 }
 
+/* Keyframes for fade-out animation */
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -82,332 +67,102 @@ position: absolute;
   }
 }
 
-.information {
-  margin-top: 120px ;
-  border-top-left-radius: 80px;
-  border-bottom-left-radius: 80px;
-  width: 100%;
-  background-color: white;
-}
+/* Media queries for responsiveness */
 
-.order-2 {
-  position: relative;
-  z-index: 1;
-}
-
-.order-2::before {
-  content: "";
-  position: absolute;
-  top: 125px; /* Only cover the bottom */
-  left: -10px;
-   /* Adjust the height as needed */
-  z-index: -1; /* Place it behind the .order-2 element */
-  border-top-left-radius: 80px; /* Adjust the border radius as needed */
-  border-bottom-left-radius: 80px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Adjust the shadow properties as needed */
-}
-.info-sport-background::before {
-  content: "";
-  @include background-color($sport-color);
-  width: 99%;
-  height: 91%;
-}
-.info-food-background::before {
-  content: "";
-  @include background-color($festival-color);
-  width: 99%;
-  height: 93%;
-}
-
-
-.sport{
-  h1,h2{
-    @include text-colors($sport-text-color);
+/* Styles for phones (up to 575.98px) */
+@media only screen and (max-width: 575.98px) {
+  /* Example phone styles */
+  body {
+    font-size: 14px;
   }
-  .icons{
+  /* Add more styles as needed for smaller screens */
+}
+
+/* Styles for tablets (576px to 767.98px) */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  /* Example tablet styles */
+  body {
+    font-size: 16px;
+  }
+  /* Add more styles as needed for tablet-sized screens */
+}
+
+/* Styles for medium-sized screens (768px to 991.98px) */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  /* Example medium-sized screen styles */
+  body {
+    font-size: 18px;
+  }
+  /* Add more styles as needed for medium-sized screens */
+}
+
+/* Styles for large screens (992px to 1199.98px) */
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  /* Example large screen styles */
+  body {
+    font-size: 20px;
+  }
+  /* Add more styles as needed for large screens */
+}
+
+/* Styles for extra-large screens (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  /* Example extra-large screen styles */
+  body {
+    font-size: 22px;
+  }
+  /* Add more styles as needed for extra-large screens */
+}
+
+/* Styles for specific event types */
+/* Sport Event Styles */
+.sport {
+  background-color: $sport-color; /* Use the sport color as background */
+  h1,
+  h2 {
+    @include text-colors($sport-text-color); /* Set text color for headings */
+  }
+  .icons {
     font-size: 2rem;
     margin-right: 20px;
-
-    @include text-colors($sport-text-color);
+    @include text-colors($sport-text-color); /* Set text color for icons */
   }
-  span,strong{
+  span,
+  strong {
     font-size: 2rem;
   }
-  h2{
+  h2 {
     text-decoration: underline;
     font-size: 2rem;
   }
-  .description p,li{
+  .description p,
+  li {
     font-size: 1.3rem;
   }
-  // .pay a{
-  //   text-decoration: none;
-  //   font-size: 2rem;
-  //   border: 1px solid;
-  //   padding: 20px;
-  //   border-radius: 20px;
-  //   @include background-color($sport-text-color);
-  //   &:hover{
-  //     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  //   }
-  // }
 }
-.food{
-  h1,h2{
-    @include text-colors($festival-text-color);
+
+/* Festival Event Styles */
+.food {
+  background-color: $festival-color; /* Use the festival color as background */
+  h1,
+  h2 {
+    @include text-colors($festival-text-color); /* Set text color for headings */
   }
-  .icons{
+  .icons {
     font-size: 3rem;
     margin-right: 30px;
-
-    @include text-colors($festival-text-color);
+    @include text-colors($festival-text-color); /* Set text color for icons */
   }
-  span,strong{
+  span,
+  strong {
     font-size: 2rem;
   }
-  h2{
+  h2 {
     text-decoration: underline;
     font-size: 2rem;
   }
-  .description p,li{
+  .description p,
+  li {
     font-size: 1.5rem;
   }
-
-  // .pay a{
-  //   text-decoration: none;
-  //   font-size: 2rem;
-  //   color: white;
-  //   border: 1px solid;
-  //   padding: 20px;
-  //   border-radius: 20px;
-  //   @include background-color($festival-text-color);
-  //   &:hover{
-  //     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  //   }
-  // }
 }
-
-@media (max-width: 1180px) {
-  .image-container {
-    padding-bottom: 0; /* Remove the padding to allow images to appear on top */
-    position: relative;
-  }
-
-  .image-background img {
-    position: relative;
-    display: block;
-    opacity: 1; /* Set opacity to 1 to make the images fully visible */
-    //animation-name: none; /* Remove animation */
-
-  }
-
-  /* Adjust the positioning of .order-2 to make it part of the flow */
-  .order-2 {
-    position: relative;
-   //bottom: 100px;
-   left: 45%;
-   top: 10px;
-   margin: 30px;
-
-
-  .icons,strong{
-    font-size: 1rem;
-  }
-
-
-  }
-
-
-.information {
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
-  h1{
-    font-size: 1.6rem;
-    text-align: center;
-
-  }
-
-
-  .description{
-
-    h2{
-      font-size: 1.3rem;
-    }
-    p{
-      font-size: 0.8rem;
-    }
-
-  }
-  position: relative;
-  width: 50%;
-  padding: 20px !important;
-    background-color:white;
-
-
-  }
-
-  .address span{
-    font-size: 1rem;
-  }
-
-
-  .image-background {
-
-    position: absolute;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .info-sport-background::before {
-    background-color: #fff;;
-
-  }
-
-  .order-2::before {
-   display: none;
-  }
-
-
-
-
-}
-
-// @media (min-width: 500px) and (max-width: 900px) {
-//   .image-container {
-//     padding-bottom: 0; /* Remove the padding to allow images to appear on top */
-//     position: relative;
-//   }
-
-//   .image-background img {
-//     position: relative;
-//     display: block;
-
-//     opacity: 1; /* Set opacity to 1 to make the images fully visible */
-//     //animation-name: none; /* Remove animation */
-
-//   }
-
-//   /* Adjust the positioning of .order-2 to make it part of the flow */
-//   .order-2 {
-
-//     position: relative;
-//    //bottom: 100px;
-//    left: 0%;
-//    top: 300px;
-//    margin: 30px;
-//    width: 100%;
-
-
-//   .icons,strong{
-//     font-size: 1rem;
-//   }
-
-
-//   }
-
-
-// .information {
-//   border-top-right-radius: 80px;
-//   border-bottom-right-radius: 80px;
-//   width: 100%;
-//   h1{
-//     font-size: 1.6rem;
-//     text-align: center;
-
-//   }
-
-
-//   .description{
-
-//     h2{
-//       font-size: 1.3rem;
-//     }
-//     p{
-//       font-size: 0.8rem;
-//     }
-
-//   }
-//   position: relative;
-
-//   padding: 20px !important;
-//     background-color:white;
-
-
-//   }
-
-//   .address span{
-//     font-size: 1rem;
-//   }
-
-
-//   .image-background {
-
-//     position: absolute;
-//     width: 100%;
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//   }
-
-//   @keyframes fadeIn {
-//     0% {
-//       opacity: 0;
-//     }
-//     50% {
-//       opacity: 0;
-//     }
-//     100% {
-//       opacity: 0;
-//     }
-//   }
-
-//   @keyframes fadeOut {
-//     0% {
-//       opacity: 0;
-//     }
-//     100% {
-//       opacity: 0;
-//     }
-//   }
-
-//   .info-sport-background::before {
-//     background-color: #fff;;
-
-//   }
-
-//   .order-2::before {
-//    display: none;
-//   }
-
-
-
-
-// }
-
-
-
-
-
-
-

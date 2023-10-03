@@ -23,7 +23,7 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
   username: string = '';
   currentImageIndex: number = 0;
   private intervalId: any;
-  aspectRatio: number = (7 / 6) * 100;
+  aspectRatio: number = (2 / 3) * 100;
 
 
   @HostListener('window:resize', ['$event'])

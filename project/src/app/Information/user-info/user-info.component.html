@@ -21,9 +21,9 @@
   <h2 class="text-center">I tuoi Preferiti</h2>
   <div id="sport" class="mb-5 sport-event">
     <div class="row">
-      <div *ngFor="let events of favouriteEvents; let i = index" class="col-md-4">
+      <div *ngFor="let events of favouriteEvents; let i = index" class="col-md-6 col-lg-4">
         <div class="scaleCard m-0 p-0">
-          <div class="bg-white p-3 rounded">
+          <div class="bg-white p-5 cards">
             <div class="text-white">
               <div *ngIf="events">
                 <div *ngIf="events.event && events.event.imageMetadataList">
@@ -31,28 +31,28 @@
                 </div>
               </div>
             </div>
-            <div class="tristi">
-              <p class="title-price fs-5"><strong>{{ events.event?.title }}</strong></p>
-              <div class="d-flex justify-content-between">
-                <!-- <p class="title-price"><strong>{{ events.type_of_sports }}</strong></p> -->
-              </div>
-              <div>
-                <p><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.event?.address }},{{(events.event?.town)}} "
+            <div class="tristi justify-content-center ">
+              <p class="fs-3 text-center"><strong>{{ events.event?.title }}</strong></p>
+
+              <div class="text-start">
+                <p class="fs-5"> <i class="bi bi-geo-alt-fill title-price"> </i> <a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ events.event?.address }},{{(events.event?.town)}} "
                   target="_blank">{{(events.event?.town)}}
-                    <i class="bi bi-pin-map-fill "> </i></a></p>
-                <p> <i class="bi bi-calendar-date-fill"> {{events.event?.date | date}}, {{events.event?.time}}</i> </p>
+                    </a></p>
+
+                  <p class="text-black fs-5"> <i class="bi icons bi-calendar-date-fill title-price"></i>  {{events.event?.date | date}}</p>
+                  <p class="fs-5"> <i class="bi bi-clock icons title-price"></i> {{events.event?.time}} </p>
               </div>
             </div>
             <div class="pb-1 mt-3">
               <div class="d-flex justify-content-between">
                 <div class="title-price">
-                  <i  class=" bi-currency-euro fs-5 m-1"> <strong>{{ events.event?.price === 'GRATIS' ? 'GRATIS' : events.event?.price | currency:'EUR':true }}</strong>  </i>
+                  <i  class="fs-5 m-1"> <strong>{{ events.event?.price === 'GRATIS' ? 'GRATIS' : events.event?.price | currency:'EUR':true }}</strong>  </i>
                 </div>
-                <div *ngIf="events.event?.eventType==='Sport'">
-                  <a class="nav-link" [routerLink]="['/navbar', 'sports', events.event?.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                <div  class="scopri" *ngIf="events.event?.eventType==='Sport'">
+                  <a [routerLink]="['/navbar', 'sports', events.event?.id]" routerLinkActive="active">Scopri di piu</a>
                 </div>
-                <div *ngIf="events.event?.eventType==='Food_festival'">
-                  <a class="nav-link" [routerLink]="['/navbar', 'food', events.event?.id]" routerLinkActive="active"><p class="text-black">Scopri di piu</p></a>
+                <div  class="scopri" *ngIf="events.event?.eventType==='Food_festival'">
+                  <a [routerLink]="['/navbar', 'food', events.event?.id]" routerLinkActive="active">Scopri di piu</a>
                 </div>
               </div>
             </div>
