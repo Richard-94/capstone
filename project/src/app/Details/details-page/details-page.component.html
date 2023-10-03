@@ -1,96 +1,112 @@
 <!-- ************************SPORT************************ -->
 
 <div *ngIf="details && details.eventType === 'Sport'" class="image-container" >
-  <div class="container-fluid description-container">
+  <div class="container-fluid p-0 m-0 description-container">
     <div class="row">
       <div class="info-sport-background mt-0">
-        <div class="container-fluid">
+        <ngb-carousel [showNavigationArrows]="false" class="">
+          <ng-template ngbSlide *ngFor="let image of details.imageMetadataList">
+            <div id="post" class="picsum-img-wrapper">
+              <img class="w-100" [src]="image.filePath" alt="Image">
 
-          <img [src]="image.filePath" alt="Image" class="image-fade-in-out" *ngFor="let image of details.imageMetadataList; let i = index" [ngClass]="{'fade-in': i === currentImageIndex, 'fade-out': i !== currentImageIndex}">
-        </div>
-        <div id="info" class="information sport ">
-          <div class="align-items-end">
-            <div class="container-fluid">
-              <div class="row">
-                <div>
-                  <div class="mb-4">
-                    <h1 class="m-0">{{ details.title }}</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="container-fluid mb-5 align-items-center address">
-            <div class="row">
-              <div class="col-8 fs-1">
-                <div class="mb-4 address">
-                  <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none text-center" href="https://www.google.com/maps?q={{ details.address }},{{ details.town }}" target="_blank"><span>{{ details.address }} ({{ details.town }})</span></a></p>
-                </div>
-                <div>
-                  <i class="bi bi-calendar-date-fill icons"></i>
-                  <span>{{ details.date | date }}</span>
-                </div>
-              </div>
-
-              <div class="col p-0 ms-5">
-                <div class="mb-4">
-                  <i class="bi bi-clock icons"></i>
-                  <span>{{ details.time }}</span>
-                </div>
-                <div>
-                  <i class="bi bi-currency-euro icons"></i>
-                  <strong class="ms-3">{{ details.price === 'GRATIS' ? 'GRATIS' : details.price }}</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="description">
-            <h2>Panorama</h2>
-            <p>{{ details.description }}</p>
-          </div>
-
-          <div class="description">
-            <div class="mb-4">
-              <h2>Dettagli</h2>
-              <p>{{ details.info_event }}</p>
-              <p class="fs-4"><i class="bi bi-person-wheelchair icons"></i> {{ details.disabilities }}</p>
             </div>
 
-            <div class="container-fluid p-0">
-              <div class="row">
-                <div class="col">
-                  <h2>Partecipanti</h2>
-                  <p>{{ details.participants }}</p>
-                </div>
-                <div class="col">
-                  <h2>Organizzatore</h2>
-                  <p>{{ details.organizer }}</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col p-0" *ngIf="details">
-                  <div *ngIf="details.sponsorsList && details.sponsorsList.length > 0">
-                    <h2 class="p-0">Sponsors</h2>
-                    <div class="d-flex">
-                      <ul class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
-                        <li>{{ sponsor.nameSponsor }}</li>
-                        <li>{{ sponsor.websites }}</li>
-                      </ul>
+          </ng-template>
+        </ngb-carousel>
+        <div  class="color container-fluid d-flex ">
+          <div id="info" class="information col sport">
+            <div class="align-items-end">
+              <div class="container-fluid">
+                <div class="row">
+                  <div>
+                    <div class="mb-4">
+                      <h1 class="m-0">{{ details.title }}</h1>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col pay">
-                  <p class="mt-5"><a mat-button routerLink="/">Acquista il tuo biglietto</a></p>
-                </div> -->
+              </div>
+            </div>
+
+            <div class="container-fluid mb-5 align-items-center address">
+              <div class="row">
+                <div class="col-8 fs-1">
+                  <div class="mb-4 address">
+                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none text-center" href="https://www.google.com/maps?q={{ details.address }},{{ details.town }}" target="_blank"><span>{{ details.address }} ({{ details.town }})</span></a></p>
+                  </div>
+                  <div>
+                    <i class="bi bi-calendar-date-fill icons"></i>
+                    <span>{{ details.date | date }}</span>
+                  </div>
+                </div>
+
+                <div class="col p-0 ms-5">
+                  <div class="mb-4">
+                    <i class="bi bi-clock icons"></i>
+                    <span>{{ details.time }}</span>
+                  </div>
+                  <div>
+                    <i class="bi bi-currency-euro icons"></i>
+                    <strong class="ms-3">{{ details.price === 'GRATIS' ? 'GRATIS' : details.price }}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description">
+              <h2>Panorama</h2>
+              <p>{{ details.description }}</p>
+            </div>
+
+            <div class="description">
+              <div class="mb-4">
+                <h2>Dettagli</h2>
+                <p>{{ details.info_event }}</p>
+                <p class="fs-4"><i class="bi bi-person-wheelchair icons"></i> {{ details.disabilities }}</p>
+              </div>
+
+              <div class="container-fluid p-0">
+                <div class="row">
+                  <div class="col">
+                    <h2>Partecipanti</h2>
+                    <p>{{ details.participants }}</p>
+                  </div>
+                  <div class="col">
+                    <h2>Organizzatore</h2>
+                    <p>{{ details.organizer }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col p-0" *ngIf="details">
+                    <div *ngIf="details.sponsorsList && details.sponsorsList.length > 0">
+                      <h2 class="p-0">Sponsors</h2>
+                      <div class="d-flex">
+                        <ul class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
+                          <li>{{ sponsor.nameSponsor }}</li>
+                          <li>{{ sponsor.websites }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col pay">
+                    <p class="mt-5"><a mat-button routerLink="/">Acquista il tuo biglietto</a></p>
+                  </div> -->
+                </div>
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div *ngIf="details.imageMetadataList">
+              <img class="rounded img-fluid mb-3 image d-none d-lg-block" [src]="details.imageMetadataList[1]?.filePath" alt="Random slide" />
+            </div>
+          </div>
+
+
+
         </div>
+
       </div>
 
     </div>

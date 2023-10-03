@@ -26,98 +26,40 @@ $festival-text-color: blue; // Festival text color
   color: $paragraph-color;
 }
 
+// .information::before {
+//   content: "";
+//   @include background-color($sport-color);
+//   width: 20%;
+//   height: 100%;
+//   position: absolute;
+//   top: 0px;
+//   left: -30px;
 
 
-/* Styles for the img element with fade-in and fade-out effect */
-.image-fade-in-out {
-  position: absolute; /* Add this line to overlap images */
-  opacity: 0;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both;
+// }
+
+
+.information{
+  padding: 60px;
+  padding-top: 0;
+  justify-content: center;
+
+
+
 }
 
-/* Define the fade-in animation */
-.fade-in {
-  animation-name: fadeIn;
+.color{
+
+  margin-top: 150px !important;
+
+
 }
 
-/* Define the fade-out animation */
-.fade-out {
-  animation-name: fadeOut;
-}
 
-/* Keyframes for fade-in animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-/* Keyframes for fade-out animation */
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Media queries for responsiveness */
-
-/* Styles for phones (up to 575.98px) */
-@media only screen and (max-width: 575.98px) {
-  /* Example phone styles */
-  body {
-    font-size: 14px;
-  }
-  /* Add more styles as needed for smaller screens */
-}
-
-/* Styles for tablets (576px to 767.98px) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  /* Example tablet styles */
-  body {
-    font-size: 16px;
-  }
-  /* Add more styles as needed for tablet-sized screens */
-}
-
-/* Styles for medium-sized screens (768px to 991.98px) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  /* Example medium-sized screen styles */
-  body {
-    font-size: 18px;
-  }
-  /* Add more styles as needed for medium-sized screens */
-}
-
-/* Styles for large screens (992px to 1199.98px) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  /* Example large screen styles */
-  body {
-    font-size: 20px;
-  }
-  /* Add more styles as needed for large screens */
-}
-
-/* Styles for extra-large screens (1200px and above) */
-@media only screen and (min-width: 1200px) {
-  /* Example extra-large screen styles */
-  body {
-    font-size: 22px;
-  }
-  /* Add more styles as needed for extra-large screens */
-}
-
-/* Styles for specific event types */
-/* Sport Event Styles */
 .sport {
-  background-color: $sport-color; /* Use the sport color as background */
+  //background-color: $sport-color; /* Use the sport color as background */
+
   h1,
   h2 {
     @include text-colors($sport-text-color); /* Set text color for headings */
@@ -140,6 +82,8 @@ $festival-text-color: blue; // Festival text color
     font-size: 1.3rem;
   }
 }
+
+
 
 /* Festival Event Styles */
 .food {
@@ -166,3 +110,23 @@ $festival-text-color: blue; // Festival text color
     font-size: 1.5rem;
   }
 }
+
+
+/* Media query for screens between 200px and 900px */
+@media (min-width: 200px) and (max-width: 999px) {
+  .information {
+    width: 100%;
+    justify-content: center;
+    padding: 15px;
+
+  }
+
+  .icons i{
+    font-size: 1.1rem;
+    margin-right: 10px;
+    @include text-colors($sport-text-color); /* Set text color for icons */
+  }
+}
+
+
+
