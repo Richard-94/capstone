@@ -64,7 +64,7 @@ private refreshTriggered: boolean = false;
   isActive?:boolean = false;
   isActiveArray: boolean[] = [];
   isActiveArraySport: boolean[] = [];
-
+  isActiveArrayChildren: boolean[] = [];
 
 
   constructor(
@@ -95,6 +95,7 @@ private refreshTriggered: boolean = false;
            console.log(response);
            this.dialogService.updateResponseDataUserEvent(response)
            this.isActiveArray = response.map((userEvent) => userEvent.favourite === true);
+           //this. isActiveArrayChildren = response.map((userEvent) => userEvent.favourite === true);
         //this.isActiveArraySport = response.map((userEvent) => userEvent.favourite === true);
          });
        }
@@ -211,6 +212,49 @@ private refreshTriggered: boolean = false;
   }
 
   favouritesSport(eventId: number) {
+    if (this.authServ.login) {
+      console.log('ciaoo');
+
+      let username = localStorage.getItem('username') ?? '';
+      if (username) {
+        this.dataServ.getSingle(username).subscribe(
+          (response: RecoverId) => {
+            // Assign the 'id' from the response to 'this.data.userId'
+            this.data = new UserEvent();
+            this.data.eventId = eventId;
+            this.data.userId = response.id; // Set userId here
+            console.log(this.data);
+
+            // Find the clicked event by its eventId and toggle its favourite property
+            const clickedEventsports = this.sportEvents.find(event => event.id === eventId);
+            if (clickedEventsports) {
+              clickedEventsports.favourite = !clickedEventsports.favourite;
+
+              // Send the request to create/update the event
+               this.homeService.createEvents(this.data).subscribe(
+                 (response) => {
+                   console.log(response);
+                 },
+                 (error) => {
+                   this.handleServiceError(error);
+                   this.errorUserEvent = this.error;
+                   alert(this.errorUserEvent);
+                   this.isSendPost = true;
+                 }
+               );
+            }
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      }
+    } else {
+      this.openDialog('3000ms', '1500ms');
+    }
+  }
+
+  favouritesChildren(eventId: number) {
     if (this.authServ.login) {
       console.log('ciaoo');
 

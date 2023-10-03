@@ -11,7 +11,7 @@ import { LoginComponent } from 'src/app/home-navbar/authentication/login/login/l
 import { Children } from 'src/app/Classes/children';
 import { MediaMatcher } from '@angular/cdk/layout';
 
-type EventDetails = Sports | Festival | Children;
+type EventDetails = Sports | Festival;
 
 @Component({
   selector: 'app-details-page',
@@ -20,21 +20,23 @@ type EventDetails = Sports | Festival | Children;
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   details?: EventDetails;
+  detailsChilden?: Children;
+  detailsFood?: Festival;
   username: string = '';
   currentImageIndex: number = 0;
   private intervalId: any;
   aspectRatio: number = (2 / 3) * 100;
 
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any): void {
-    // Adjust the aspect ratio based on the window's width
-    if (window.innerWidth <= 1024) {
-      this.aspectRatio = (1/1) * 100; // Adjust the aspect ratio for smaller screens
-    } else {
-      this.aspectRatio = (7 / 6) * 100; // Reset to the initial aspect ratio for larger screens
-    }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: any): void {
+  //   // Adjust the aspect ratio based on the window's width
+  //   if (window.innerWidth <= 1024) {
+  //     this.aspectRatio = (1/1) * 100; // Adjust the aspect ratio for smaller screens
+  //   } else {
+  //     this.aspectRatio = (7 / 6) * 100; // Reset to the initial aspect ratio for larger screens
+  //   }
+  // }
   private mobileQueryListener: () => void;
   mobileQuery: MediaQueryList | null = null;
 
@@ -71,11 +73,27 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
         const id = +idParam;
         const type = typeParam;
         const apiUrl = `http://localhost:8083/api/events/${type}/${id}`;
+        console.log(type);
 
-        this.detailsServ.getEventsByTypeSport(type, id).subscribe((response) => {
-          this.details = response;
-          console.log('Fetched Details:', this.details);
-        });
+
+        if(type ==='sports'){
+          this.detailsServ.getEventsByTypeSport(type, id).subscribe((response) => {
+            this.details = response;
+            console.log('Fetched Details:', this.details);
+          });
+        }else if(type ==='children'){
+          this.detailsServ.getEventsByTypeChildren(type, id).subscribe((response) => {
+            this.detailsChilden = response;
+            console.log('Fetched Details:',this.detailsChilden );
+          });
+        }else if(type ==='food'){
+          this.detailsServ.getEventsByTypeFestival(type, id).subscribe((response) => {
+            this.detailsFood = response;
+            console.log('Fetched Details:',this.detailsFood);
+          });
+        }
+
+
       } else {
         console.log('No route parameters available.');
       }

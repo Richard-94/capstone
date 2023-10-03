@@ -190,7 +190,11 @@ export class ChildrenComponent {
       price: formValue.price || undefined,
       imageMetadataList: formValue.imageMetadataList || undefined,
       sponsorsList: formValue.sponsorsList || undefined,
-
+      themes: formValue.themes|| undefined,
+      activities: formValue.activities || undefined,
+      animations: formValue.animations || undefined,
+      games: formValue.games || undefined,
+      ageRanges:formValue.ageRanges || undefined,
       createdByUser:this.storedUsername  || undefined
     };
   }
@@ -208,6 +212,7 @@ export class ChildrenComponent {
          console.log(response);
          this.isSendPost = true
          this.success = "Welcome please login to continue"
+         this.myForm.reset()
          //this.router.navigate(['/login'])
          // location.reload()
          //this.dialogRef.close();

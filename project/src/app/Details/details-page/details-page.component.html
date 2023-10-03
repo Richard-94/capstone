@@ -39,14 +39,14 @@
                   </div>
                 </div>
 
-                <div class="col p-0 ms-5">
+                <div class="col align-items-center p-0 mt-3">
                   <div class="mb-4">
                     <i class="bi bi-clock icons"></i>
                     <span>{{ details.time }}</span>
                   </div>
                   <div>
                     <i class="bi bi-currency-euro icons"></i>
-                    <strong class="ms-3">{{ details.price === 'GRATIS' ? 'GRATIS' : details.price }}</strong>
+                    <strong class="">{{ details.price === 'GRATIS' ? 'GRATIS' : details.price }}</strong>
                   </div>
                 </div>
               </div>
@@ -117,336 +117,242 @@
 
 <!--
 *******************************FOOD FESTIVAL***************************** -->
-<div *ngIf="details && details.eventType ==='Food_festival'" class="image-container">
-  <div class="image-background" [ngClass]="{'fade-in': i === currentImageIndex, 'fade-out': i !== currentImageIndex}" *ngFor="let image of details.imageMetadataList; let i = index" [style.backgroundImage]="'url(' + image.filePath + ')'">
-    <div class="container-fluid description-container">
-      <div class="row">
-        <div class="col order-2 mt-0 info-food-background">
-          <div id="info" class="information food p-5">
+
+
+<div *ngIf="detailsFood && detailsFood.eventType === 'Food_festival'" class="image-container" >
+  <div class="container-fluid p-0 m-0 description-container">
+    <div class="row">
+      <div class="info-food-background mt-0">
+        <ngb-carousel [showNavigationArrows]="false" class="">
+          <ng-template ngbSlide *ngFor="let image of detailsFood.imageMetadataList">
+            <div id="post" class="picsum-img-wrapper">
+              <img class="w-100" [src]="image.filePath" alt="Image">
+
+            </div>
+
+          </ng-template>
+        </ngb-carousel>
+        <div  class="color container-fluid d-flex ">
+          <div id="info" class="information col food">
             <div class="align-items-end">
-
-              <div class="text-dark logo  text-end mb-5">
-                <a  mat-button routerLink="/"><img src="assets/logo_declinazione_uno.svg" width="40%" alt="My Image"/></a>
-
+              <div class="container-fluid">
+                <div class="row">
+                  <div>
+                    <div class="mb-4">
+                      <h1 class="m-0">{{ detailsFood.title }}</h1>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="tristi "class="d-flex justify-content-between text-align-center">
-              <div>
-                <p class="title-price hot playlist fs-4">{{ details.title }}</p>
-              </div>
-
-                <i class="bi bi-heart-fill"></i>
-
-
-            </div>
-
-            <div class="container-fluid mb-5 align-items-center">
+            <div class="container-fluid mb-5 align-items-center address">
               <div class="row">
-                <div class="col text-start">
-                  <div class="mb-4">
-                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ details.address }},{{(details.town)}} "
-                      target="_blank"><span>{{(details.address)}} ({{(details.town)}})</span>
-                    </a></p>
+                <div class="col-8 fs-1">
+                  <div class="mb-4 address">
+                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none text-center" href="https://www.google.com/maps?q={{ detailsFood.address }},{{ detailsFood.town }}" target="_blank"><span>{{ detailsFood.address }} ({{ detailsFood.town }})</span></a></p>
                   </div>
                   <div>
                     <i class="bi bi-calendar-date-fill icons"></i>
-                    <span>{{details.date | date}}</span>
+                    <span>{{ detailsFood.date | date }}</span>
                   </div>
                 </div>
 
-                <div class="col text-end p-0">
+                <div class="col align-items-center p-0 mt-3">
                   <div class="mb-4">
                     <i class="bi bi-clock icons"></i>
-                    <span> {{details.time}} </span>
+                    <span>{{detailsFood.time }}</span>
                   </div>
-                  <div class="me-3">
-                    <i class=" bi-currency-euro icons">  </i>
-                      <strong>{{ details.price === 'GRATIS' ? 'GRATIS' : details.price | currency:'EUR':true }}
-
-                      </strong>
+                  <div>
+                    <i class="bi bi-currency-euro icons"></i>
+                    <strong class="">{{ detailsFood.price === 'GRATIS' ? 'GRATIS' : detailsFood.price }}</strong>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="description">
               <h2>Panorama</h2>
-              <p> {{details.description}} </p>
+              <p>{{ detailsFood.description }}</p>
             </div>
 
             <div class="description">
               <div class="mb-4">
                 <h2>Dettagli</h2>
-              <p> {{details.info_event}} </p>
-              <p><strong><i class="bi bi-person-wheelchair icons"></i> {{details.disabilities}}</strong></p>
+                <p>{{ detailsFood.info_event }}</p>
+                <p class="fs-4"><i class="bi bi-person-wheelchair icons"></i> {{detailsFood.disabilities }}</p>
               </div>
 
               <div class="container-fluid p-0">
                 <div class="row">
                   <div class="col">
                     <h2>Partecipanti</h2>
-                      <p>{{details.participants}} </p>
+                    <p>{{ detailsFood.participants }}</p>
                   </div>
                   <div class="col">
                     <h2>Organizzatore</h2>
-                    <p> {{details.organizer}}  </p>
-
+                    <p>{{ detailsFood.organizer }}</p>
                   </div>
-
                 </div>
               </div>
 
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col" *ngIf="details">
-                    <div *ngIf="details.sponsorsList && details.sponsorsList.length > 0">
-                      <h2 class="text-center mb-5">Sponsors</h2>
+                  <div class="col p-0" *ngIf="details">
+                    <div *ngIf="detailsFood.sponsorsList && detailsFood.sponsorsList.length > 0">
+                      <h2 class="p-0">Sponsors</h2>
                       <div class="d-flex">
-                        <ul  class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
+                        <ul class="list-unstyled me-5" *ngFor="let sponsor of detailsFood.sponsorsList">
                           <li>{{ sponsor.nameSponsor }}</li>
                           <li>{{ sponsor.websites }}</li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="col pay">
+                  <!-- <div class="col pay">
                     <p class="mt-5"><a mat-button routerLink="/">Acquista il tuo biglietto</a></p>
-                  </div>
-
-
+                  </div> -->
                 </div>
-
               </div>
-
             </div>
           </div>
+          <div class="col-md-6">
+            <div *ngIf="detailsFood.imageMetadataList">
+              <img class="rounded img-fluid mb-3 image d-none d-lg-block" [src]="detailsFood.imageMetadataList[1]?.filePath" alt="Random slide" />
+            </div>
+          </div>
+
+
+
         </div>
-        <div class="col-7">
-        </div>
+
       </div>
+
     </div>
   </div>
 </div>
 
-<div *ngIf="details && details.eventType ==='Food_festival'" class="image-container">
-  <div class="image-background" [ngClass]="{'fade-in': i === currentImageIndex, 'fade-out': i !== currentImageIndex}" *ngFor="let image of details.imageMetadataList; let i = index" [style.backgroundImage]="'url(' + image.filePath + ')'">
-    <div class="container-fluid description-container">
-      <div class="row">
-        <div class="col order-2 mt-0 info-food-background">
-          <div id="info" class="information food p-5">
+<div *ngIf="  detailsChilden &&   detailsChilden.eventType === 'Bambini'" class="image-container" >
+  <div class="container-fluid p-0 m-0 description-container">
+    <div class="row">
+      <div class="info-food-background mt-0">
+        <ngb-carousel [showNavigationArrows]="false" class="">
+          <ng-template ngbSlide *ngFor="let image of   detailsChilden.imageMetadataList">
+            <div id="post" class="picsum-img-wrapper">
+              <img class="w-100" [src]="image.filePath" alt="Image">
+
+            </div>
+
+          </ng-template>
+        </ngb-carousel>
+        <div  class="color container-fluid d-flex ">
+          <div id="info" class="information col children">
             <div class="align-items-end">
-
-              <div class="text-dark logo  text-end mb-5">
-                <a  mat-button routerLink="/"><img src="assets/logo_declinazione_uno.svg" width="40%" alt="My Image"/></a>
-
+              <div class="container-fluid">
+                <div class="row">
+                  <div>
+                    <div class="mb-4">
+                      <h1 class="m-0">{{   detailsChilden.title }}</h1>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="tristi "class="d-flex justify-content-between text-align-center">
-              <div>
-                <p class="title-price hot playlist fs-4">{{ details.title }}</p>
-              </div>
-
-                <i class="bi bi-heart-fill"></i>
-
-
-            </div>
-
-            <div class="container-fluid mb-5 align-items-center">
+            <div class="container-fluid mb-5 align-items-center address">
               <div class="row">
-                <div class="col text-start">
-                  <div class="mb-4">
-                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ details.address }},{{(details.town)}} "
-                      target="_blank"><span>{{(details.address)}} ({{(details.town)}})</span>
-                    </a></p>
+                <div class="col-8 fs-1">
+                  <div class="mb-4 address">
+                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none text-center" href="https://www.google.com/maps?q={{   detailsChilden.address }},{{   detailsChilden.town }}" target="_blank"><span>{{   detailsChilden.address }} ({{   detailsChilden.town }})</span></a></p>
                   </div>
                   <div>
                     <i class="bi bi-calendar-date-fill icons"></i>
-                    <span>{{details.date | date}}</span>
+                    <span>{{   detailsChilden.date | date }}</span>
                   </div>
                 </div>
 
-                <div class="col text-end p-0">
+                <div class="col align-items-center p-0 mt-3">
                   <div class="mb-4">
                     <i class="bi bi-clock icons"></i>
-                    <span> {{details.time}} </span>
+                    <span>{{  detailsChilden.time }}</span>
                   </div>
-                  <div class="me-3">
-                    <i class=" bi-currency-euro icons">  </i>
-                      <strong>{{ details.price === 'GRATIS' ? 'GRATIS' : details.price | currency:'EUR':true }}
-
-                      </strong>
+                  <div>
+                    <i class="bi bi-currency-euro icons"></i>
+                    <strong class="">{{  detailsChilden.price === 'GRATIS' ? 'GRATIS' :   detailsChilden.price }}</strong>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="description">
               <h2>Panorama</h2>
-              <p> {{details.description}} </p>
+              <p>{{   detailsChilden.description }}</p>
             </div>
 
             <div class="description">
               <div class="mb-4">
                 <h2>Dettagli</h2>
-              <p> {{details.info_event}} </p>
-              <p><strong><i class="bi bi-person-wheelchair icons"></i> {{details.disabilities}}</strong></p>
+                <p>{{   detailsChilden.info_event }}</p>
+                <p class="fs-4"><i class="bi bi-person-wheelchair icons"></i> {{   detailsChilden.disabilities }}</p>
               </div>
 
               <div class="container-fluid p-0">
                 <div class="row">
                   <div class="col">
                     <h2>Partecipanti</h2>
-                      <p>{{details.participants}} </p>
+                    <p>{{   detailsChilden.participants }}</p>
                   </div>
                   <div class="col">
                     <h2>Organizzatore</h2>
-                    <p> {{details.organizer}}  </p>
-
+                    <p>{{   detailsChilden.organizer }}</p>
                   </div>
-
                 </div>
               </div>
 
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col" *ngIf="details">
+                  <div class="col p-0" *ngIf="details">
                     <div *ngIf="details.sponsorsList && details.sponsorsList.length > 0">
-                      <h2 class="text-center mb-5">Sponsors</h2>
+                      <h2 class="p-0">Sponsors</h2>
                       <div class="d-flex">
-                        <ul  class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
+                        <ul class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
                           <li>{{ sponsor.nameSponsor }}</li>
                           <li>{{ sponsor.websites }}</li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="col pay">
-                    <p class="mt-5"><a mat-button routerLink="/">Acquista il tuo biglietto</a></p>
-                  </div>
 
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-7">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="details && details.eventType ==='Bambini'" class="image-container">
-  <div class="image-background" [ngClass]="{'fade-in': i === currentImageIndex, 'fade-out': i !== currentImageIndex}" *ngFor="let image of details.imageMetadataList; let i = index" [style.backgroundImage]="'url(' + image.filePath + ')'">
-    <div class="container-fluid description-container">
-      <div class="row">
-        <div class="col order-2 mt-0 info-food-background">
-          <div id="info" class="information children p-5">
-            <div class="align-items-end">
-
-              <div class="text-dark logo  text-end mb-5">
-                <a  mat-button routerLink="/"><img src="assets/logo_declinazione_uno.svg" width="40%" alt="My Image"/></a>
-
-              </div>
-            </div>
-
-            <div class="tristi "class="d-flex justify-content-between text-align-center">
-              <div>
-                <p class="title-price hot playlist fs-4">{{ details.title }}</p>
-              </div>
-
-                <i class="bi bi-heart-fill"></i>
-
-
-            </div>
-
-            <div class="container-fluid mb-5 align-items-center">
-              <div class="row">
-                <div class="col text-start">
-                  <div class="mb-4">
-                    <p><i class="bi bi-geo-alt-fill icons"></i><a class="text-black text-decoration-none" href="https://www.google.com/maps?q={{ details.address }},{{(details.town)}} "
-                      target="_blank"><span>{{(details.address)}} ({{(details.town)}})</span>
-                    </a></p>
-                  </div>
-                  <div>
-                    <i class="bi bi-calendar-date-fill icons"></i>
-                    <span>{{details.date | date}}</span>
-                  </div>
-                </div>
-
-                <div class="col text-end p-0">
-                  <div class="mb-4">
-                    <i class="bi bi-clock icons"></i>
-                    <span> {{details.time}} </span>
-                  </div>
-                  <div class="me-3">
-                    <i class=" bi-currency-euro icons">  </i>
-                      <strong>{{ details.price === 'GRATIS' ? 'GRATIS' : details.price | currency:'EUR':true }}
-
-                      </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="description">
-              <h2>Panorama</h2>
-              <p> {{details.description}} </p>
-            </div>
-
-            <div class="description">
-              <div class="mb-4">
-                <h2>Dettagli</h2>
-              <p> {{details.info_event}} </p>
-              <p><strong><i class="bi bi-person-wheelchair icons"></i> {{details.disabilities}}</strong></p>
-              </div>
-
-              <div class="container-fluid p-0">
-                <div class="row">
                   <div class="col">
-                    <h2>Partecipanti</h2>
-                      <p>{{details.participants}} </p>
-                  </div>
-                  <div class="col">
-                    <h2>Organizzatore</h2>
-                    <p> {{details.organizer}}  </p>
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col" *ngIf="details">
-                    <div *ngIf="details.sponsorsList && details.sponsorsList.length > 0">
-                      <h2 class="text-center mb-5">Sponsors</h2>
+                    <div *ngIf="detailsChilden && detailsChilden.activities && detailsChilden.activities.length > 0">
+                      <h2 class="p-0">Attività</h2>
                       <div class="d-flex">
-                        <ul  class="list-unstyled me-5" *ngFor="let sponsor of details.sponsorsList">
-                          <li>{{ sponsor.nameSponsor }}</li>
-                          <li>{{ sponsor.websites }}</li>
+                        <ul class="list-unstyled me-5" *ngFor="let activity of detailsChilden.activities">
+                          <li  >{{ activity  }}</li>
+
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="col pay">
+                  <!-- <div class="col pay">
                     <p class="mt-5"><a mat-button routerLink="/">Acquista il tuo biglietto</a></p>
-                  </div>
-
-
+                  </div> -->
                 </div>
-
               </div>
-
             </div>
           </div>
+          <div class="col-md-6">
+            <div *ngIf="  detailsChilden.imageMetadataList">
+              <img class="rounded img-fluid mb-3 image d-none d-lg-block" [src]="  detailsChilden.imageMetadataList[2]?.filePath" alt="Random slide" />
+            </div>
+          </div>
+
+
+
         </div>
-        <div class="col-7">
-        </div>
+
       </div>
+
     </div>
   </div>
 </div>
-

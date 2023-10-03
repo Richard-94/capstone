@@ -90,6 +90,21 @@
 
               <div>
                 <mat-form-field class="example-full-width">
+                  <mat-label>Scegli Comune</mat-label>
+                  <mat-select formControlName="town" [(ngModel)]="selectedComune" name="comune">
+                    <mat-option *ngFor="let item of comune" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('town')?.hasError('required')">
+                  Il comune è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
+
+              <div>
+                <mat-form-field class="example-full-width">
                   <mat-label>Organizzatore</mat-label>
                   <input appSpacing type="text" matInput formControlName="organizer" placeholder="Organizzatore">
                   <mat-error *ngIf="myForm.get('organizer')?.hasError('required')">
@@ -138,7 +153,6 @@
 
 
 
-
               <div>
                 <mat-form-field class="example-full-width">
                   <mat-label>Scegli tipo di sport</mat-label>
@@ -152,6 +166,21 @@
                   Il tipo di evento è <strong>richiesto</strong>
                 </mat-error>
               </div>
+
+              <div>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Scegli Provincia</mat-label>
+                  <mat-select formControlName="province" [(ngModel)]="selectedProvince" name="province">
+                    <mat-option *ngFor="let item of provinces" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="myForm.get('province')?.hasError('required')">
+                  La provincia è <strong>richiesta</strong>
+                </mat-error>
+              </div>
+
 
               <div>
                 <mat-form-field class="example-full-width">

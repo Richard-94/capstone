@@ -177,13 +177,13 @@
                 </div>
                 <div class="tristi "class="d-flex justify-content-between text-align-center">
                   <div>
-                    <p class="title-price hot fs-4">{{ events.title }}</p>
+                    <p class="title-price hot  fs-4">{{ events.title }}</p>
                   </div>
 
 
-                    <!-- <div (click)="favourites(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArray[i] }" class="fs-3">
-                        <i class="bi bi-heart-fill"></i>
-                    </div> -->
+                  <div (click)="favouritesChildren(events.id!)" [ngClass]="{ 'active-star': events.favourite, 'active-init': isActiveArrayChildren[i] }" class="fs-3">
+                    <i class="bi bi-heart-fill"></i>
+                  </div>
 
                 </div>
 

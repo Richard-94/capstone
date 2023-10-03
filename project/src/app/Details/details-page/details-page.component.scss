@@ -6,6 +6,11 @@ $sport-text-color: #ED1E79; // Sport text color
 $festival-color: rgba(65, 98, 180, 0.6); // Festival color
 $festival-text-color: blue; // Festival text color
 
+ // ***************CHILDREN***************
+ $primary-color:#FFF9AE; //Giving a variable;
+ $children-color:#f0d27291;
+ $children-text-color:#E9D700;
+
 /* Mixin for setting background color */
 @mixin background-color($back-color) {
   background-color: $back-color !important;
@@ -55,11 +60,7 @@ $festival-text-color: blue; // Festival text color
 
 }
 
-
-
 .sport {
-  //background-color: $sport-color; /* Use the sport color as background */
-
   h1,
   h2 {
     @include text-colors($sport-text-color); /* Set text color for headings */
@@ -83,11 +84,35 @@ $festival-text-color: blue; // Festival text color
   }
 }
 
+.children {
+  h1,
+  h2 {
+    @include text-colors($children-text-color); /* Set text color for headings */
+  }
+  .icons {
+    font-size: 2rem;
+    margin-right: 20px;
+    @include text-colors($children-text-color); /* Set text color for icons */
+  }
+  span,
+  strong {
+    font-size: 2rem;
+  }
+  h2 {
+    text-decoration: underline;
+    font-size: 2rem;
+  }
+  .description p,
+  li {
+    font-size: 1.3rem;
+  }
+}
+
 
 
 /* Festival Event Styles */
 .food {
-  background-color: $festival-color; /* Use the festival color as background */
+
   h1,
   h2 {
     @include text-colors($festival-text-color); /* Set text color for headings */
@@ -121,11 +146,25 @@ $festival-text-color: blue; // Festival text color
 
   }
 
-  .icons i{
-    font-size: 1.1rem;
+  .icons{
+    font-size: 1.1rem !important;
     margin-right: 10px;
-    @include text-colors($sport-text-color); /* Set text color for icons */
+
   }
+
+
+.color{
+  margin-top: 20px !important;
+}
+
+span{
+  font-size: 1.5rem !important;
+}
+
+strong{
+  font-size: 1.7rem !important;
+}
+
 }
 
 

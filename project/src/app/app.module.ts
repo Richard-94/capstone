@@ -34,6 +34,7 @@ import { ShowTextPipe } from "./Pipes/showText.pipe";
 import { WarningComponent } from './warning/warning.component';
 import { SearchComponent } from "./search/search.component";
 import { FooterComponent } from './footer/footer.component';
+import { RemoveHyphenPipe } from './Pipes/remove-hyphen.pipe';
 
 
 
@@ -66,7 +67,9 @@ import { FooterComponent } from './footer/footer.component';
      ShowTextPipe,
      SearchComponent,
      WarningComponent,
-     FooterComponent
+     FooterComponent,
+     RemoveHyphenPipe,
+     RemoveHyphenPipe
 
 
   ],
